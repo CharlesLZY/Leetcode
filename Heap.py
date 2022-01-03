@@ -10,6 +10,9 @@ from heapq import * ### only supply min heap, we need to encapsulate our own max
 
 class MIN_Heap:
     heap = [] ### min heap
+    def __init__(self, array):
+        for num in array:
+            self.push(num)
     def push(self, x):
         heappush(self.heap, x)
     def pop(self):
@@ -27,6 +30,10 @@ class MIN_Heap:
 
 class MAX_Heap:
     heap = [] ### min heap
+    def __init__(self, array):
+        for num in array:
+            self.push(num)
+
     def push(self, x):
         heappush(self.heap, -x)
     def pop(self):

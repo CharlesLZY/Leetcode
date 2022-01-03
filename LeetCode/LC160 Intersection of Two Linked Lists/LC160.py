@@ -45,3 +45,17 @@ class Solution:
             else:
                 p2 = headA
         return p1
+
+### Hash Table Solution
+### TC: O(n) and SC: O(n)
+class Solution:
+    def getIntersectionNode(self, headA, headB):
+        hashTable = set()
+        while headA:
+            hashTable.add(id(headA)) ### memory address
+            headA = headA.next
+
+        while headB:
+            if id(headB) in hashTable:
+                return headB
+            headB = headB.next

@@ -33,10 +33,12 @@ class Solution:
         ### s stride always 1, p stride can be 1 or 2
         def match(s_i, p_j): ### match s[s_i:] with p[p_j:]
             if p_j >= len(p): ### p is run out
-                return s_i == len(s) ### if s is also run out, then whole string is matched
+                return s_i == len(s) ### if s is also run out, then whole string is 
+
+            ### judgement for s_i cannot be placed here, testcase: s="aa" p="a*"
 
             if p_j + 1 < len(p) and p[p_j + 1] == "*": ### handle _* pattern
-                if match(s_i, p_j+2): ### if we pass this _*, the string can be matched
+                if match(s_i, p_j+2): ### if we skip this _*, the string can be matched
                     return True
                 else: ### if skip current _* pattern will not lead to a successful match, then we have to match it
                     if s_i == len(s): ### s is run out, but skiping current _* will not give a successful match, then failed
@@ -48,6 +50,7 @@ class Solution:
                             return False
                         
             else: ### without * postfix, the pattern can not be skiped and must be matched
+                ### 
                 if s_i == len(s): ### s is run out, p still has remains
                     return False
                 else:
@@ -63,7 +66,8 @@ class Solution:
     def isMatch(self, s, p):
         DP_table = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]
         ### the DP_table need to be filled from bottom to top
-        DP_table[len(s)][len(p)] = True
+        ### DP[i][j] means whether s[i:] is valid according to p[j:] 
+        DP_table[len(s)][len(p)] = True ### empty string empty pattern 
         for s_i in range(len(s), -1, -1):
             for p_j in range(len(p) - 1, -1, -1): ### starting from len(p) - 1 , DP_table[len(s)][len(p)] = True and DP_table[s_i < len(s)][len(p)] = False
                 direct_match = s_i < len(s) and (p[p_j] == s[s_i] or p[p_j] == '.') ### at first we need have string to match (s_i < len(string)?), then we consider whether the current pattern is matched

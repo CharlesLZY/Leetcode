@@ -8,6 +8,7 @@ JZ16 数值的整数次方
 # @param exponent int
 # @return float
 
+### TC: O(logn) and SC: O(1)
 class Solution:
     def Power(self, base, exponent):
         if exponent < 0:

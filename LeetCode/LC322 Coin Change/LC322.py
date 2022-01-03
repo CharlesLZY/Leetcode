@@ -1,0 +1,58 @@
+'''
+Leetcode 322. Coin Change
+
+Description:
+You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
+
+Return the fewest number of coins that you need to make up that amount. 
+If that amount of money cannot be made up by any combination of the coins, return -1.
+
+You may assume that you have an infinite number of each kind of coin.
+'''
+
+# @param coins List[int] 
+# @param amount int 
+# @return int
+
+
+### Brute Solution
+### TC O(S^n) and SC: O(S^n)  where S is the amount, n is denomination count
+class Solution:
+    MIN = float("inf")
+    def coinChange(self, coins, amount):
+        self.MIN = float("inf")
+        def DFS(path, res):
+            if res < 0:
+                return 
+            if res == 0:
+                self.MIN = min(self.MIN, len(path))
+                return 
+            for c in coins:
+                path.append(c)
+                DFS(path, res-c)
+                path.pop()
+        DFS([], amount)
+        if self.MIN == float("inf"): ### corner case
+            return -1
+        return self.MIN
+
+
+'''
+DP[S] = min DP[S - c] + 1 where DP[S] is the min number of coins to make change for S
+         c
+'''
+### DP Solution
+### TC: O(S*n) and SC: O(S) where S is the amount, n is denomination count
+class Solution:
+    def coinChange(self, coins, amount):
+        DP_table = [float("inf")] * (amount+1)
+        DP_table[0] = 0
+        for i in range(min(coins), amount + 1):
+            candidates = []
+            for c in coins:
+                if i - c < 0:
+                    candidates.append(float("inf"))
+                else:
+                    candidates.append(DP_table[i-c])
+            DP_table[i] = min(candidates) + 1
+        return DP_table[-1] if DP_table[amount] != float("inf") else -1

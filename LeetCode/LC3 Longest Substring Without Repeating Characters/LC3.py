@@ -14,14 +14,14 @@ class Solution:
     def lengthOfLongestSubstring(self, s):
         MAX = 0
         hashTable = [0] * 128 ### ASIIC 
-        j = 0 ###
+        lp = 0 
         for i in range(len(s)):
             cur = s[i]
             hashTable[ord(cur)] += 1
             while hashTable[ord(cur)] > 1: ### keeping narrowing the interval
-                hashTable[ord(s[j])] -= 1
-                j += 1
-            MAX = max(MAX, i - j + 1)
+                hashTable[ord(s[lp])] -= 1
+                lp += 1
+            MAX = max(MAX, i - lp + 1)
         return MAX
 
 
@@ -31,11 +31,11 @@ class Solution:
     def lengthOfLongestSubstring(self, s):
         MAX = 0
         hashTable = [-1] * 128 ### ASIIC 
-        j = 0 ###
+        lp = 0 
         for i in range(len(s)):
-            cur = s[i]s
-            if hashTable[ord(cur)] >= j: ### the repeated char occurs in the window
-                j = hashTable[ord(cur)] + 1
-            hashTable[ord(cur)] = i
-            MAX = max(MAX, i - j + 1)
+            cur = s[i]
+            if hashTable[ord(cur)] >= lp: ### the repeated char occurs in the window, default is -1 (never occur)
+                lp = hashTable[ord(cur)] + 1 ### skip the left pointer
+            hashTable[ord(cur)] = i ### update to latest index
+            MAX = max(MAX, i - lp + 1)
         return MAX

@@ -18,27 +18,27 @@ If a number occupies more than half of the array, it can use the 'perish togethe
 ### TC: O(n) and SC: O(1)
 class Solution:
     def MoreThanHalfNum_Solution(self, numbers):
-        condidate = None
-        count = 0
+        candidate = None
+        vote = 0
 
         for n in numbers:
-            if count == 0:
-                condidate = n
-                count += 1
+            if vote == 0:
+                candidate = n
+                vote += 1
             else:
-                if condidate != n:
-                    count -= 1
+                if candidate != n:
+                    vote -= 1
                 else:
-                    count += 1
+                    vote += 1
 
         winCondition = len(numbers) // 2
         k = 0
-        ### check whether the condidate is the mode
+        ### check whether the candidate is the mode
         for n in numbers:
-            if n == condidate:
+            if n == candidate:
                 k += 1
             if k >= winCondition:
-                return condidate
+                return candidate
         return -1 ### there is no number whose occuring times are more than half the length of the array 
 
 

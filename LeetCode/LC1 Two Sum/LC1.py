@@ -18,7 +18,7 @@ class Solution:
     def twoSum(self, nums, target):
         hashTable = {}
         for i in range(len(nums)):
-            complement = target - nums[i]
+            complement = target - nums[i] ### to achieve one pass
             if complement in hashTable:
                 return [i, hashTable[complement]]
             hashTable[nums[i]] = i

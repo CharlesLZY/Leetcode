@@ -1,0 +1,102 @@
+'''
+Leetcode 5. Longest Palindromic Substring
+
+Description:
+Given a string s, return the longest palindromic substring in s.
+'''
+
+# @param s str 
+# @return str
+
+'''
+DP[i][j] whether s[i:j+1] is palindrome
+DP[i][j] = DP[i+1][j-1] and s[i] == s[j]
+Base cases: DP[i][i] = True, DP[i][i+1] = s[i] == s[i+1]
+'''
+
+
+### Brute Solution
+### TC: O(n^2) and SC: O(1)
+class Solution:
+    def longestPalindrome(self, s):
+        def checkPalindrome(s):
+            return s == s[::-1]
+        res = ""
+        for i in range(len(s)): 
+            if i+1 < len(s) and s[i] == s[i+1]: ### .. b a a b ..
+                r = 0 ### radius
+                while i-r >= 0 and i+r+2 <= len(s) and checkPalindrome(s[i-r:i+r+2]):
+                    if len(s[i-r:i+r+2]) > len(res):
+                        res = s[i-r:i+r+2]
+                    r += 1
+            ### .. b a b ..
+            r = 0 ### radius
+            while i-r >= 0 and i+r+1 <= len(s) and checkPalindrome(s[i-r:i+r+1]):
+                if len(s[i-r:i+r+1]) > len(res):
+                    res = s[i-r:i+r+1]
+                r += 1
+
+        return res
+
+### Center Extending Solution
+### TC: O(n^2) and SC: O(1)
+class Solution:
+    def longestPalindrome(self, s):
+        def checkPalindrome(s):
+            return s == s[::-1]
+        res = ""
+        r = 0 ### shared radius, the longest substring must beat the former one
+        for i in range(len(s)): ### .. b a a b ..
+            while i-r >= 0 and i+r+2 <= len(s) and checkPalindrome(s[i-r:i+r+2]):
+                if len(s[i-r:i+r+2]) > len(res):
+                    res = s[i-r:i+r+2]
+                r += 1
+
+        for i in range(len(s)): ### .. b a b ..
+            while i-r >= 0 and i+r+1 <= len(s) and checkPalindrome(s[i-r:i+r+1]):
+                if len(s[i-r:i+r+1]) > len(res):
+                    res = s[i-r:i+r+1]
+                r += 1
+
+        return res
+
+
+
+### DP Solution
+### TC: O(n^2) and SC: O(n^2)
+class Solution:
+    def longestPalindrome(self, s):
+        DP_table = [[None for i in range(len(s))] for _ in range(len(s))]
+        max_length = 1
+        index = 0
+        for i in range(len(s)):
+            DP_table[i][i] = True
+        for i in range(len(s)-1):
+            DP_table[i][i+1] = s[i]==s[i+1]
+            if s[i]==s[i+1]:
+                max_length = 2
+                index = i
+
+
+        '''
+            a b c b a a b
+            0 1 2 3 4 5 6 
+        0   T F
+        1     T F
+        2       T F
+        3         T F
+        4           T T
+        5             T F
+        6               T
+
+        '''
+
+        ### filling the DP table along the diagonal
+        for i in range(len(s)-2):
+            for j in range(len(s)-2-i):
+                DP_table[j][j+2+i] = DP_table[j+1][j+1+i] and s[j]==s[j+2+i]
+                if DP_table[j][j+2+i] and i+3 > max_length:
+                    max_length = i+3
+                    index = j
+
+        return s[index:index+max_length]

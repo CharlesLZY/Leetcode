@@ -10,10 +10,9 @@ JZ29 顺时针打印矩阵
 
 class Solution:
     def printMatrix(self, matrix):
-        h, w = len(matrix), len(matrix[0])
-
         ans = []
-
+        
+        h, w = len(matrix), len(matrix[0])
         up = 0
         bottom = h-1
         left = 0

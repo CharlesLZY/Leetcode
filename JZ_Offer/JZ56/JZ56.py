@@ -11,7 +11,6 @@ JZ56 数组中只出现一次的两个数字
 # @return List[int]
 
 ### Intuitive Solution: Hash Table: TC: O(n) but SC: O(n) and Sort: SC: O(1) but TC: O(nlogn)
-
 class Solution:
     def FindNumsAppearOnce(self, array):
         hashTable = {}
@@ -33,7 +32,7 @@ A XOR A = 0
 A XOR B = B XOR A
 (A XOR B) XOR C = A XOR (B XOR C) 
 '''
-### If there is only one number occurs once, we can use XOR to achieve TC O(n) and SC O(1)
+### If there is only one number occurs once(LC136), we can use XOR to achieve TC O(n) and SC O(1)
 def findNumsAppearOnce(array):
     res = 0
     for num in array:

@@ -19,7 +19,7 @@ JZ82 二叉树中和为某一值的路径(一)
 This problem is simple, because the path must start from root and end at the left node (with no child).
 '''
 
-### Recursive Solution
+### Recursion Solution
 ### TC: O(n) and SC: O(n)
 class Solution:
     def hasPathSum(self, root, S):

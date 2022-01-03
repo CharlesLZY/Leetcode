@@ -30,7 +30,7 @@ Arr 0  1  2  3  4
 We can eliminate one row or column at a time.
 '''
 
-### TC: O(1) and SC: O(n+m)
+### TC: O(n+m) and SC: O(1)
 class Solution:
     def Find(self, target, array):
         h, w = len(array), len(array[0])

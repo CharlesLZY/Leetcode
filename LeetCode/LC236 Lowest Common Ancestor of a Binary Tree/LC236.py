@@ -15,8 +15,8 @@ as the lowest node in T that has both p and q as descendants (where we allow a n
 #         self.right = None
 
 # @param root TreeNode 
-# @param p int 
-# @param q int
+# @param p TreeNode
+# @param q TreeNode
 # @return TreeNode
 
 '''
@@ -47,7 +47,7 @@ as the lowest node in T that has both p and q as descendants (where we allow a n
 ### Easy to understand solution (A lot to optimize)
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
-        def contain(node, target):
+        def contain(node, target): ### whether the sub-tree whose root is node contains the target
             if node is None:
                 return False
             elif node == target:

@@ -22,6 +22,6 @@ class Solution:
         low = float("inf")
         MAX = 0
         for p in prices:
-            low = min(p, low)
-            MAX = max(MAX, p - low)
+            low = min(p, low) ### will keep updating
+            MAX = max(MAX, p - low) ### only the current price will substract the lowest price
         return MAX

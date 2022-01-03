@@ -19,14 +19,14 @@ JZ34 二叉树中和为某一值的路径(二)
 This problem is simple, because the path must start from root and end at the left node (with no child).
 '''
 
-### Recursive Solution
+### Recursion Solution
 ### TC: O(n) and SC: O(n)
 class Solution:
     ans = []
     def FindPath(self, root, target):
         def add(node, res, path):
+            res += node.val
             path.append(node.val)
-            res = res + node.val
             if node.left is None and node.right is None: ### leaf node
                 if res == target:
                     self.ans.append(path[:])
@@ -35,7 +35,7 @@ class Solution:
                     add(node.left, res, path)
                 if node.right:
                     add(node.right, res, path)
-            path.pop()
+            path.pop() ### backtrack
 
         if root: ### corner case: empty tree
             add(root, target, [])

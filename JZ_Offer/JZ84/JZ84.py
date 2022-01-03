@@ -32,7 +32,7 @@ class Solution:
 
         if root: 
             DFS(root, target)
-            self.FindPath(root.left, target)
-            self.FindPath(root.right, target)
+            self.FindPath(root.left, target) ### path is not required to start from root
+            self.FindPath(root.right, target) ### path is not required to start from root
 
         return self.res

@@ -15,6 +15,8 @@ We don't want to waste resource. So, the x should be 0. To ensure the divisibili
 Stop as the same node and catch up and then surpass both can prove two pointers meet.
 But surpassing case need extra space to record the nodes pointers visit each stride.
 
+        a                b
+        
 -[ ] - [ ] - [ ] - [ ] - [ ] - [ ] 
                     |           |
                    [ ]         [ ]
@@ -50,4 +52,4 @@ class Solution:
                 fast = fast.next
             return fast
         else:
-            return 
+            return None

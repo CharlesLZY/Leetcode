@@ -10,6 +10,7 @@ JZ3 数组中重复的数字
 # @param numbers List[int] 
 # @return int
 
+### Intuitive Hash Table Solution
 ### TC: O(n) and SC: O(n)
 class Solution:
     def duplicate(self, numbers):

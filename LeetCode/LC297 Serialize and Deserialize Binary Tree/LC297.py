@@ -46,7 +46,7 @@ class Codec:
                 nodes.pop(0)
                 return None
             else:
-                root = TreeNode(nodes.pop(0))
+                root = TreeNode(nodes.pop(0)) ### simulate DFS
                 root.left = decode(nodes)
                 root.right = decode(nodes)
                 return root

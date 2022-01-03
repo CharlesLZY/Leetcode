@@ -97,10 +97,11 @@ def QuickSort(arr, low, high):
         arr[high], arr[r] = arr[r], arr[high]
 
         pivot = arr[high]
+        ### j the first number which is larger than pivot but on the left side
         j = low ### must start from the other side (different from the pivot side)
         for i in range(low, high): ### pivot is arr[high], so we pass over arr[high]
             if arr[i] < pivot:
-                arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake here
+                arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake (write j as i) here
                 j += 1 ### from left to right
 
         arr[j], arr[high] = arr[high], arr[j] ### swap pivot and arr[j]
@@ -115,10 +116,11 @@ def QuickSort(arr, low, high):
         arr[low], arr[r] = arr[r], arr[low]
 
         pivot = arr[low]
+        ### j the first number which is smaller than pivot but on the right side
         j = high ### must start from the other side (different from the pivot side)
         for i in range(high, low, -1): ### pivot is arr[low], so we pass over arr[low]
             if arr[i] > pivot:
-                arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake here
+                arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake (write j as i) here
                 j -= 1 ### from right to left
 
         arr[j], arr[low] = arr[low], arr[j] ### swap pivot and arr[j]
@@ -271,20 +273,23 @@ def QuickSort(arr, low, high):
 
 
 
-### TC: O(n) Quick select k-th largest number
+### TC: O(n) Quick select k-th largest number n + n/2 + n/4 + n/8 + ... = 2n
 import random
 def QuickSelect(arr, k):  ### quick select k-th largest
     def partition(low, high):
-        r = random.randint(low, high) ### avoid worst case
-        arr[high], arr[r] = arr[r], arr[high]
-        pivot = arr[high]
-        j = low
-        for i in range(low, high):
-            if arr[i] < pivot:
-                arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake here
-                j += 1
-        arr[j], arr[high] = arr[high], arr[j] 
-        return j
+        if low < high:
+            r = random.randint(low, high) ### avoid worst case
+            arr[high], arr[r] = arr[r], arr[high]
+            pivot = arr[high]
+            j = low
+            for i in range(low, high):
+                if arr[i] < pivot:
+                    arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake (write j as i) here
+                    j += 1
+            arr[j], arr[high] = arr[high], arr[j] 
+            return j
+        else:
+            return low
 
     ### rank:  len(arr)  ... 2, 1
     ### idx:   0, 1 ... len(arr) - 2, len(arr) - 1
@@ -302,14 +307,17 @@ def QuickSelect(arr, k):  ### quick select k-th largest
 
 def QuickSelect(arr, k):  ### quick select k-th smallest
     def partition(low, high):
-        pivot = arr[high]
-        j = low
-        for i in range(low, high):
-            if arr[i] < pivot:
-                arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake here
-                j += 1
-        arr[j], arr[high] = arr[high], arr[j] 
-        return j
+        if low < high:
+            pivot = arr[high]
+            j = low
+            for i in range(low, high):
+                if arr[i] < pivot:
+                    arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake (write j as i) here
+                    j += 1
+            arr[j], arr[high] = arr[high], arr[j] 
+            return j
+        else:
+            return low
 
     ### rank:  1, 2 ... len(arr) 
     ### idx:   0, 1 ... len(arr) - 1
@@ -330,16 +338,19 @@ def QuickSelect(arr, k):  ### quick select k-th smallest
 import random
 def QuickSelect(arr, k):  ### quick select k-th largest
     def partition(low, high):
-        r = random.randint(low, high) ### avoid worst case
-        arr[high], arr[r] = arr[r], arr[high]
-        pivot = arr[high]
-        j = low
-        for i in range(low, high):
-            if arr[i] < pivot:
-                arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake here
-                j += 1
-        arr[j], arr[high] = arr[high], arr[j] 
-        return j
+        if low < high:
+            r = random.randint(low, high) ### avoid worst case
+            arr[high], arr[r] = arr[r], arr[high]
+            pivot = arr[high]
+            j = low
+            for i in range(low, high):
+                if arr[i] < pivot:
+                    arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake (write j as i) here
+                    j += 1
+            arr[j], arr[high] = arr[high], arr[j] 
+            return j
+        else:
+            return low
 
     ### rank:  len(arr)  ... 2, 1
     ### idx:   0, 1 ... len(arr) - 2, len(arr) - 1

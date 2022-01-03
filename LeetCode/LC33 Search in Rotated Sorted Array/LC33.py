@@ -27,13 +27,13 @@ class Solution:
         def findPivot():
             left = 0
             right = len(nums)-1
-            while left < right:
-                if nums[left] <= nums[right]:
+            while left < right: ### pivot must exist, if left == right, then that position is the pivot
+                if nums[left] < nums[right]:
                     return left
                 mid = (left + right) // 2
-                if nums[mid] < nums[left]:
+                if nums[mid] < nums[left]: ### trick: only compare with left
                     right = mid
-                elif nums[mid] > nums[left]:
+                elif nums[mid] > nums[left]: ### trick: only compare with left
                     left = mid + 1
                 else:
                     left += 1
