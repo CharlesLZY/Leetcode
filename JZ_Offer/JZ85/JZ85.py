@@ -12,6 +12,7 @@ JZ85 连续子数组的最大和(二)
 # @param array List[int] 
 # @return List[int]
 
+### TC: O(n) and SC: O(1)
 class Solution:
     def FindGreatestSumOfSubArray(self, array):
         MAX = array[0]
@@ -22,6 +23,7 @@ class Solution:
         cur_rp = 1
 
         for i in range(1, len(array)):
+            ### if array[i]  + cur < array[i]: ### refer to JZ42
             if array[i]  + cur < 0 or cur < 0:
                 cur_lp = i
                 cur_rp = i+1

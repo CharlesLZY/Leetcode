@@ -9,13 +9,24 @@ JZ81 调整数组顺序使奇数位于偶数前面(二)
 # @param array List[int]
 # @return List[int]
 
+
+### TC: O(n) and SC: O(1)
+class Solution:
+    def reOrderArrayTwo(self, array):
+        j = 0 ### leftmost even number
+        for i in range(len(array)):
+            if array[i] % 2 == 1: # odd
+                array[i], array[j] = array[j], array[i] ### similar to quick sort
+                j += 1
+        return array
+
 ### One common TC O(n) and SC O(1) solution for array related problem is two pointers.
 ### TC: O(n) and SC: O(1)
 class Solution:
     def reOrderArrayTwo(self, array):
         lp = 0
         rp = len(array) - 1
-        while lp < rp:
+        while lp < rp: ### similar to quick sort
             while array[lp] % 2 != 0 and lp < rp:
                 lp += 1
             while array[rp] % 2 == 0 and lp < rp:

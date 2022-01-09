@@ -19,6 +19,7 @@ class Solution:
         if n<0:
             n = n & 0xffffffff ### Negative number converted to Two's complement
         while n != 0:
-            ans += 1
-            n = n & (n-1) ### n : 1101000; n-1 : 1100111; val & (val-1) : 1100000
+            if n & 1:
+                ans += 1
+            n = n >> 1
         return ans

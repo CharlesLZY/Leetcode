@@ -14,7 +14,7 @@ class Solution:
     def lengthOfLongestSubstring(self, s):
         MAX = 0
         hashTable = [0] * 128 ### ASIIC 
-        j = 0 ###
+        j = 0 ### left boundary
         for i in range(len(s)):
             cur = s[i]
             hashTable[ord(cur)] += 1
@@ -32,9 +32,9 @@ class Solution:
     def lengthOfLongestSubstring(self, s):
         MAX = 0
         hashTable = [-1] * 128 ### ASIIC 
-        j = 0 ###
+        j = 0 ### left boundary
         for i in range(len(s)):
-            cur = s[i]s
+            cur = s[i]
             if hashTable[ord(cur)] >= j: ### the repeated char occurs in the window
                 j = hashTable[ord(cur)] + 1
             hashTable[ord(cur)] = i

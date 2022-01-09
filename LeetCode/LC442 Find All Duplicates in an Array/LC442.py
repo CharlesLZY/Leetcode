@@ -24,7 +24,7 @@ class Solution:
             if nums[i] == i + 1 or nums[i] == -1:
                 i += 1
             else:
-                if nums[i] == nums[nums[i]-1]: ### unless the number is in on its own seat, the while lopp will keep swapping 
+                if nums[i] == nums[nums[i]-1]: ### unless the number is in on its own seat, the while loop will keep swapping 
                     ans.append(nums[i])
                     nums[i] = -1 ### marked it was visited
                     i += 1

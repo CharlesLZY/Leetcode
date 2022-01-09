@@ -49,13 +49,18 @@ The inorder traversal and postorder traversal of the binary tree correspond to a
   1   3
 Inorder: push 1 push 2 push 3
 Postorder: push 1 pop 1 push 2 push 3 pop 3 pop 2
-Preorder: 2 1 3 (Also can be a postorder)
+Preorder: 2 1 3 (Also can be a postorder like below)
     3
    /
   1
    \
     2
 '''
+
+'''
+前序，中序，后序都可以看成一个push顺序，然后其他的看成pop顺序，但树可以长成各种各样，将排序后的数组作为中序遍历可以确保这是一个BST
+'''
+
 ### Stack Solution: Check whether sequence is a valid stack pop sequence if we treat the inorder traverse sequence as the stack push order
 ### TC: O(nlogn) and SC: O(n)
 class Solution:

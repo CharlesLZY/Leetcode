@@ -36,7 +36,7 @@ class Solution:
         return DFS(0, 0)
 
 
-### Recursion Solution with Memorization (Modified from LC494)
+### Recursion Solution with Memoization (Modified from LC494)
 ### TC: O(m*n) and SC: O(m*n) where m = sum(nums) // 2
 class Solution:
     def canPartition(self, nums):
@@ -59,7 +59,7 @@ class Solution:
 
         return DFS(0, 0)
 
-### Optimized Recursion Solution with Memorization
+### Optimized Recursion Solution with Memoization
 ### TC: O(m*n) and SC: O(m*n) where m = sum(nums) // 2
 class Solution:
     def canPartition(self, nums):

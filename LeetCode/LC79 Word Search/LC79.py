@@ -12,7 +12,6 @@ The same letter cell may not be used more than once.
 # @param word str
 # @return bool
 
-
 class Solution:
     def exist(self, board, word):
         n_row, n_col = len(board), len(board[0])
@@ -35,7 +34,6 @@ class Solution:
                 if forward(i, j, word):
                     return True
         return False
-
 
 
 class Solution:

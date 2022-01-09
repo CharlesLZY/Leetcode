@@ -23,6 +23,7 @@ class Solution:
         while cur:
             if cur.val == val:
                 prev.next = cur.next
+                del cur ### c/c++ style
                 break
             prev = cur
             cur = cur.next

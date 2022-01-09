@@ -58,3 +58,27 @@ class Solution:
 
         return [findLow(), findHigh()]
 
+
+### Another Solution
+### TC: O(logn) and SC: O(1)
+class Solution:
+    def searchRange(self, nums, target):
+        def search(target):
+            lp = 0
+            rp = len(nums)
+            while lp < rp:
+                mid = (lp + rp) // 2
+                if nums[mid] >= target:
+                    rp = mid
+                else:
+                    lp = mid + 1
+            return lp
+        
+        lp = search(target)
+        rp = search(target+1)-1
+        
+        if rp < lp: ### not found
+            return [-1,-1]
+        else:
+            return [lp, rp]
+

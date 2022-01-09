@@ -27,7 +27,7 @@ class Solution:
 
 class Solution:
     res = 0
-    def TreeDepth(self, root):
+    def maxDepth(self, root):
         self.res = 0
         def DFS(node, depth):
             if node:

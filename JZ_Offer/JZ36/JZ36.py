@@ -14,7 +14,6 @@ JZ36 二叉搜索树与双向链表
 # @param pRootOfTree TreeNode
 # @return TreeNode
 
-
 '''
 The inorder traversal sequence of a binary search tree is sorted.
 So what we need to do is to inorder traverse the binary search tree and link the node with its predecessor

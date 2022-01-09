@@ -17,6 +17,9 @@ The key point of Binary Search is what should the mid compare with and which sid
 但这题存在一些情况，我们无法判断该往那边走，所以left和right的更新情况要复杂一点。
 '''
 
+'''
+只能用在找最小，如果用在找pivot，没法处理如果有相同数字
+'''
 ### TC: O(logn) and SC: O(1)
 class Solution:
     def minNumberInRotateArray(self, rotateArray):
@@ -58,7 +61,6 @@ class Solution:
                 left += 1 ### We can not tell which side to go. But, at least, the mid is the same as the left end, so the left end can be discarded. 
 
         return rotateArray[left]
-
 
 
 

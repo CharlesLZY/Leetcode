@@ -28,7 +28,7 @@ class Solution:
     def groupAnagrams(self, strs):
         Dict = {}
         for s in strs:
-            count = [0]*26
+            count = [0]*26 ### we can not use Counter because it is unhashable
             for char in s:
                 count[ord(char) - ord('a')] += 1
             count = tuple(count)

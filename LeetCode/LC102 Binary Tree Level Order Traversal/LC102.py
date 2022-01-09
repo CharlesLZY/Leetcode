@@ -18,46 +18,23 @@ Output: [[3],[9,20],[15,7]]
 # @param root TreeNode
 # @return List[List[int]]
 
-### Stack Solution
+### Queue Solution
 class Solution:
     def levelOrder(self, root):
         result = []
         if root is None: ### corner case
             return result
         
-        stack = [(root,0)]
+        queue = [(root,0)]
         
-        while stack:
-            root, level = stack.pop(0)
+        while queue:
+            root, level = queue.pop(0)
             if len(result) <= level:
                 result.append([])
             result[level].append(root.val)
             if root.left:
-                stack.append((root.left,level+1))
+                queue.append((root.left,level+1))
             if root.right:
-                stack.append((root.right,level+1))
+                queue.append((root.right,level+1))
         return result
 
-
-### Queue Solution
-class Solution:
-    def levelOrder(self, root):
-        res = []
-        if root is None:
-            return res
-        
-        queue = [root]
-
-        while queue:
-            cur_level = queue[:]
-            queue.clear()
-            res.append([])
-            while cur_level:
-                cur = cur_level.pop(0)
-                res[-1].append(cur.val)
-                if cur.left:
-                    queue.append(cur.left)
-                if cur.right:
-                    queue.append(cur.right)
-
-        return res

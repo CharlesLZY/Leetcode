@@ -29,9 +29,9 @@ class Solution:
         for i in range(len(array)):
             if array[i] % 2 == 1: # odd
                 odd = array[i]
-                for j in range(i-1, loc, -1): ### trick: move from right to left
+                for j in range(i-1, loc, -1): ### trick: move from right to left to maintain the relative position
                     array[j+1] = array[j]
                 loc += 1
-                array[loc] = odd
+                array[loc] = odd ### similar to quick sort
         return array
 

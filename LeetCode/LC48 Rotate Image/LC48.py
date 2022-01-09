@@ -16,7 +16,7 @@ You have to rotate the image in-place, which means you have to modify the input 
 4 5 6   ->   8 5 2
 7 8 9        9 6 3
  
-      transpose       reflect
+      transpose       mirrot
 1 2 3           1 4 7         7 4 1
 4 5 6     ->    2 5 8    ->   8 5 2
 7 8 9           3 6 9         9 6 3
@@ -40,14 +40,14 @@ class Solution:
             return matrixT
 
 
-        def reflect(matrix):
+        def mirrot(matrix):
             n = len(matrix)
             for i in range(n):
                 for j in range(n // 2):
                     matrix[i][j], matrix[i][-j - 1] = matrix[i][-j - 1], matrix[i][j]
 
         matrix = transpose(matrix)
-        reflect(matrix) # transpose then reflect
+        mirrot(matrix) # transpose then mirrot
 
 
 '''

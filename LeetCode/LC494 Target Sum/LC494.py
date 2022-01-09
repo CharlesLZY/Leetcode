@@ -37,7 +37,7 @@ class Solution:
         return self.ans
 
 
-### Recursion Solution with Memorization
+### Recursion Solution with Memoization
 ### TC: O(t*n) and SC: O(t*n) where t = sum([abs(n) for n in nums)
 class Solution:
     def findTargetSumWays(self, nums, target):

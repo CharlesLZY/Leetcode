@@ -25,18 +25,18 @@ class Solution:
     def nextPermutation(self, nums):
         last_ascending = -1
         for i in range(len(nums)-1):
-            if nums[i] < nums[i+1]:
+            if nums[i] < nums[i+1]: ### the last ascending number (not require the former numbers are strictly ascending, e.g. [1,3,2,3,5,4])
                 last_ascending = i
         if last_ascending == -1:
             nums.reverse()
-        else:
+        else: ### the numbers after the last ascending number must be descending
             ### replace the last ascending number with min number larger than it
             pivot = nums[last_ascending]
             MIN = float("inf")
             MIN_idx = -1
             for i in range(last_ascending+1, len(nums)):
                 if nums[i] > pivot:
-                    if nums[i] <= MIN: ### trick: <= , we want the small number stay behind, e.g. testcase: [2,3,1,3,3]
+                    if nums[i] <= MIN: ### trick: if there are duplicates, swap with the last one, so that we still keep the descending order
                         MIN = nums[i]
                         MIN_idx = i
             nums[last_ascending], nums[MIN_idx] = nums[MIN_idx], nums[last_ascending]

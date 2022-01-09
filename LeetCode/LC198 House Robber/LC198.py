@@ -15,12 +15,12 @@ Given an integer array nums representing the amount of money of each house, retu
 '''
 Difference between two kinds of sub-structure overlapping method
 1. DP[i] = max(DP[i-1], DP[i-2]+nums[i]) where DP[i] ending at robbing i 
-2. DP[i] = max(DP[i-1], DP[i-2]+nums[i]) where DP[i] starting from robbing i 
+2. DP[i] = max(DP[i+1], DP[i+2]+nums[i]) where DP[i] starting from robbing i 
 '''
 
 ### 4 1 2 3
 
-### Recursion DP Solution (recursion with memorization)
+### Recursion DP Solution (recursion with memoization)
 class Solution:
     def rob(self, nums):
         DP_table = [None]*(len(nums))
@@ -59,7 +59,7 @@ class Solution:
 
 
 ### Optimized DP Solution
-### TC: O(n) and SC: O(n)
+### TC: O(n) and SC: O(1)
 class Solution:
     def rob(self, nums):
         prev1 = 0

@@ -23,7 +23,7 @@ class Solution:
                 inorder_arr.append(root)
                 inorder(root.right)
         temp = pNode
-        while temp.next:
+        while temp.next: ### initialize to the root first
             temp = temp.next
 
         inorder(temp)

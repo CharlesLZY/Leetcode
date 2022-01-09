@@ -25,7 +25,7 @@ class Solution:
                     right = isSame(p1.right, p2.right) if p2.right else True
                     return left and right
 
-                else:
+                else: ### p2 must not be None, so if p1 is None, return False
                     return False
             else:
                 return False

@@ -33,7 +33,7 @@ class Solution:
                 return DFS(node.left, False) + DFS(node.right, False)
         return max(DFS(root, False), DFS(root, True))
 
-### Recursion with memorization
+### Recursion with memoization
 ### TC: O(n) and SC: O(n)
 class Solution:
     def rob(self, root):

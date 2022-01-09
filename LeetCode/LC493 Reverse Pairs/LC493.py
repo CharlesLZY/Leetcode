@@ -1,20 +1,21 @@
 '''
-JZ51 数组中的逆序对
+Leetcode 493. Reverse Pairs
 
-描述：
-在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。
-输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P mod 1000000007
+Description:
+Given an integer array nums, return the number of reverse pairs in the array.
+
+A reverse pair is a pair (i, j) where 0 <= i < j < nums.length and nums[i] > 2 * nums[j].
 '''
 
-# @param data List[int]
+# @param nums List[int] 
 # @return int
 
 ### TC: O(nlogn) and SC: O(n)
 class Solution:
     count = 0
-    def InversePairs(self, data):
-        temp = [None]*len(data)
+    def reversePairs(self, data):
         self.count = 0
+        temp = [None]*len(data)
         def mergeSort(arr, temp, low, high): ### temp should be an array has the same length with arr
 
             if low < high:
@@ -23,17 +24,16 @@ class Solution:
                 mergeSort(arr, temp, low, mid)
                 mergeSort(arr, temp, mid+1, high)
                 
-
                 p = low
-                q = mid + 1
+                q = mid+1
                 while p <= mid and q <= high:
-                    if arr[p] > arr[q]:
-                        self.count += mid - p + 1 ### trick: number after arr[p:] in the left half must be larger than arr[p] because the half-array is sorted 
+                    if arr[p] > 2*arr[q]:
+                        self.count += mid - p + 1 ### trick: number after arr[p:] in the left half must be larger than arr[p] because the half-array is sorted
                         q += 1
                     else:
                         p += 1
-
-
+                
+                
                 for i in range(low, high+1):
                     temp[i] = arr[i] ### temporarily store the array for convenience to merge
                 p1 = low
@@ -44,6 +44,7 @@ class Solution:
                             arr[i] = temp[p1]
                             p1 += 1
                         else: ### inverse pairs occur
+                            
                             arr[i] = temp[p2]
                             p2 += 1
                     elif p1 <= mid:
@@ -54,11 +55,11 @@ class Solution:
                         p2 += 1
 
         mergeSort(data, temp, 0, len(data)-1)
-        return self.count % 1000000007 ### 牛客网的傻逼要求
+        return self.count
 
 
 class Solution:
-    def InversePairs(self, data):
+    def reversePairs(self, data):
         temp = [None]*len(data)
         
         def mergeSort(arr, temp, low, high): ### temp should be an array has the same length with arr
@@ -69,11 +70,10 @@ class Solution:
                 count += mergeSort(arr, temp, low, mid)
                 count += mergeSort(arr, temp, mid+1, high)
 
-                ### check reverse pair
                 p = low
                 q = mid + 1
                 while p <= mid and q <= high:
-                    if arr[p] > arr[q]:
+                    if arr[p] > 2*arr[q]:
                         count += mid - p + 1 ### trick: number after arr[p:] in the left half must be larger than arr[p] because the half-array is sorted
                         q += 1
                     else:
@@ -102,9 +102,7 @@ class Solution:
             else:
                 return 0
 
-        return mergeSort(data, temp, 0, len(data)-1) % 1000000007
-
-
+        return mergeSort(data, temp, 0, len(data)-1)
 
 
 ### Merge Sort (Easy to understand version)

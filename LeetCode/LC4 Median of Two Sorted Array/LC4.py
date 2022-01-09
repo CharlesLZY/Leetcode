@@ -59,11 +59,12 @@ class Solution:
         lp = 0 
         rp = m ### the partition ranges from 0 to len(arr), so we use m instead of m-1
 
-        while True: ### the partion must exist
+        while True: ### trick: the partion must exist
+        ### while lp <= ro:
             p1 = (lp + rp)//2 ### partition for nums1
             p2 = (m + n)//2 - p1 ### partition for nums2 and we have p1 + p2 = (m + n)//2
 
-            leftMAX_1 = nums1[p1-1] if p1 > 0 else float("-inf")
+            leftMAX_1 = nums1[p1-1] if p1 > 0 else float("-inf") ### trick: use inf to generalize corner cases
             rightMIN_1 = nums1[p1] if p1 < m else float("inf")
 
             leftMAX_2 = nums2[p2-1] if p2 > 0 else float("-inf")

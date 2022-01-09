@@ -56,3 +56,28 @@ class Solution:
                     candidates.append(DP_table[i-c])
             DP_table[i] = min(candidates) + 1
         return DP_table[-1] if DP_table[amount] != float("inf") else -1
+
+
+### Greedy Solution
+class Solution:
+    def coinChange(self, coins, amount):
+        def DFS(res, count):
+            if count == 0:
+                if res != 0:
+                    return False
+                else:
+                    return True
+            else:
+                for c in coins:
+                    if c > res:
+                        break
+                    else:
+                        if DFS(res-c, count-1):
+                            return True
+                return False
+        lb = amount // max(coins)
+        hb = amount // min(coins) + 1
+        for i in range(lb, hb):
+            if DFS(amount, i):
+                return i
+        return -1

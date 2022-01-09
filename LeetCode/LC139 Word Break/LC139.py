@@ -18,7 +18,7 @@ class Solution:
         wordDict = set(wordDict) ### key point (enable O(1) find operation)
         visited = [] ### key point
         def DFS(idx):
-            if idx in visited: ### key point
+            if idx in visited: ### key point: to avoid repeated recursion
                 return False
             if idx == len(s):
                 return True
@@ -26,7 +26,7 @@ class Solution:
                 if s[idx:i+1] in wordDict:
                     if DFS(i+1):
                         return True
-            visited.append(idx) ### key point
+            visited.append(idx) ### key point: to avoid repeated recursion (s[:i] can have several combination possibilities)
             return False
         return DFS(0)
 
@@ -51,6 +51,7 @@ class Solution:
 
 
 ### DP Solution
+### TC: O(n^2) and SC: O(n)
 class Solution:
     def wordBreak(self, s, wordDict):
         wordDict = set(wordDict) ### key point (enable O(1) find operation)

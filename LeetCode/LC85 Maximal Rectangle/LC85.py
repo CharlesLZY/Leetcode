@@ -91,7 +91,7 @@ class Solution:
 
 
 ### Optimized Stack Solution with DP
-### TC: O(mn) and SC: O(mn) ### the SC: O(m)
+### TC: O(mn) and SC: O(m)
 class Solution:
     def maximalRectangle(self, matrix):
         ### we will use the LC84 stack solution to solve the sub-problem

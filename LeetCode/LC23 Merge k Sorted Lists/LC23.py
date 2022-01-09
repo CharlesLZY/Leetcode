@@ -53,7 +53,7 @@ class Solution:
                 frontier.append((node.next.val, node.next))
         return temp.next
 
-
+### Intuitive Sort Solution
 ### TC: O(nlogn) and SC: O(n)
 class Solution:
     def mergeKLists(self, lists):
