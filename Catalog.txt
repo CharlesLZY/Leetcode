@@ -66,6 +66,8 @@ LC283 把0移到末尾,保持其他数相对位置不动 (参考快排,遇到非
 LC406 根据高度和rank重建数组 (people.sort(key = lambda x: (-x[0], x[1])) 按身高降序 rank升序排好, 从高到底按照rank直接插ans.insert(rank, p))
 LC560 有多少连续子序和为指定值 (hashtable 存累计和, 遍历一遍，更新累计和, 每次检查target - curSum是不是在hashTable里面)
 LC621 Task Scheduler 相同任务之间得间隔n,可以用idle填槽 (用Counter统计每个任务的freq, 维护一个max heap(存每个任务的待完成次数), 每一个slot长度为n+1，从heap里面pop元素填slot,要么填满或者heap空了,然后一一检查slot里面的元素,给待完成次数-1，如果不为0就放回heap，如果heap还有东西，说明前面的slot不是最后一个slot,直接ans += n+1)
+LC398 给定一个目标值随机从数组中返回一个index (要么hash table 存一下相同数的index, 要么reservoir sampling)
+
 
 ### 二维数组
 JZ4 行列递增二维数组的查找 (start from (1,n), eliminate one col/row each time)
