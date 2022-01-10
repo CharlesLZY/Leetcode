@@ -30,7 +30,7 @@ class Solution:
                 lp = i 
                 break
 
-        for i in range(len(nums)-1, -1, -1): ### find the lat un-consistent from right to left
+        for i in range(len(nums)-1, -1, -1): ### find the last un-consistent from right to left
             if nums[i] != copy[i]:
                 rp = i 
                 break
