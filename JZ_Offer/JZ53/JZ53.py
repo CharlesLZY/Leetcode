@@ -12,7 +12,7 @@ JZ53 数字在升序数组中出现的次数
 ### TC: O(logn) and SC: O(1)
 class Solution:
     def GetNumberOfK(self, data, k):
-        def binarySearch(arr, k):
+        def binarySearch(arr, k): ### find the smallest number larger than k
             lp = 0
             rp = len(arr)-1
             while lp < rp:

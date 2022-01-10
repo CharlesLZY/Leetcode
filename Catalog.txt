@@ -67,7 +67,7 @@ LC406 根据高度和rank重建数组 (people.sort(key = lambda x: (-x[0], x[1])
 LC560 有多少连续子序和为指定值 (hashtable 存累计和, 遍历一遍，更新累计和, 每次检查target - curSum是不是在hashTable里面)
 LC621 Task Scheduler 相同任务之间得间隔n,可以用idle填槽 (用Counter统计每个任务的freq, 维护一个max heap(存每个任务的待完成次数), 每一个slot长度为n+1，从heap里面pop元素填slot,要么填满或者heap空了,然后一一检查slot里面的元素,给待完成次数-1，如果不为0就放回heap，如果heap还有东西，说明前面的slot不是最后一个slot,直接ans += n+1)
 LC398 给定一个目标值随机从数组中返回一个index (要么hash table 存一下相同数的index, 要么reservoir sampling)
-
+LC259 3Sum smaller (简单的就是锁定一个pivot然后用双指针不断缩小, 复杂一点的就是二分查找(查找最小的大于k的数和查找最大的小于k的数,难点在于处理corner case))
 
 ### 二维数组
 JZ4 行列递增二维数组的查找 (start from (1,n), eliminate one col/row each time)
@@ -80,7 +80,7 @@ JZ6 逆序打印链表 (recursive to tail)
 JZ18 删除链表节点 (遍历就完了)
 JZ22/LC19 链表倒数第k个结点 (快指针先走k步)
 JZ23 链表中环的入口 (快慢指针，标准写法fast和slow初始化都是head)
-JZ24 反转链表 (dummy head)
+JZ24/LC92 反转链表 (dummy head, 如果是指定区间反转要在整个链表前加一个dummy head)
 JZ25/LC21 合并两个排序链表 (每次比较第一个)
 LC23 合并k个排序链表
 JZ35 随机链表的复制 (先不管random link复制一遍，把新旧两个组装在一起old-new-old-new ..., old->next = new, 这样可以用old.random去定位new.random, 因为就在后面，然后再把新旧链表拆开)
@@ -191,3 +191,4 @@ LC48 旋转图像 (先转置再镜像)
 LC136 数组中只出现过一次的数 (用xor，最后剩下的就是)
 LC139 字符串可否拆分成字典里面的词 (DP[i] = DP[j] and s[j:i] in dict)
 LC461 两个数二进制有多少位不一样 (看看xor有多少个1)
+LC29 不能用乘除模拟a//b (用减法模拟,每次减的东西一直<<，直到减不动还原成最初的被除数，while套while)
