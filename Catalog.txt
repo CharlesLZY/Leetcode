@@ -179,6 +179,7 @@ LC215 快速选择 (TC:O(n), 找pivot用for, 记得加random,和high交换一下
 LC347 k个最高频出现的数 (用Counter.values，然后quick select, 或者用Counter，然后维护一个大小为k的min heap, heap 里面存(count, val))
 LC581 最短无序子序 (two loop, 正着来一遍,最后一个不更新curMAX的是end，倒着来最后一个不更新curMIN的是start)
 LC162 找一个局部极大值 (题目要求相邻的数不会相等, 如果mid < mid+1，那么一定能在nums[:mid]找一个, 如果mid>mid+1，那么一定能在[mid+1:]找一个)
+LC1901 二维数组找极大值 (找mid行，找这一行的最大值，看上下那个比max大，那么这个数比mid这一行都大，那么那一半一定有个极值点，想象一下二元函数的曲面)
 
 ### Monotonic Stack
 JZ59/LC239 滑动窗口中的最大值 (monotonic stack, 维护一个递减的stack，stack[0]就是当前窗口的最大值的index，但同时要检查stack[0]是否小于lp)
@@ -199,3 +200,4 @@ LC461 两个数二进制有多少位不一样 (看看xor有多少个1)
 LC29 不能用乘除模拟a//b (用减法模拟,每次减的东西一直<<，直到减不动还原成最初的被除数，while套while)
 LC49 把同分异构体分组 (用hash table 存sorted(string),或者用tuple模拟Counter)
 LC205 判断两个字符串是不是结构相同 (维护两个mapping_s_t和mapping_t_s，对不上就return false)
+LC69 开根号 (牛顿法，用taylor一阶近似求f(x) = x^2-n=0的解，迭代下去，如果用梯度下降的话，目标函数得改成g(x) = (x^2-n)^2)

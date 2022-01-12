@@ -8,7 +8,7 @@ Given an integer array nums, find a peak element, and return its index. If the a
 
 You may imagine that nums[-1] = nums[n] = -∞.
 
-Constraints: nums[i] != nums[i + 1] for all valid i.
+Constraint: nums[i] != nums[i + 1] for all valid i.
 
 You must write an algorithm that runs in O(log n) time.
 '''
