@@ -23,7 +23,7 @@ class Solution:
                 mergeSort(arr, temp, low, mid)
                 mergeSort(arr, temp, mid+1, high)
                 
-
+                ### since the left half and right half are sorted, we can count the inverse pairs
                 p = low
                 q = mid + 1
                 while p <= mid and q <= high:
@@ -33,7 +33,7 @@ class Solution:
                     else:
                         p += 1
 
-
+                ### merge part
                 for i in range(low, high+1):
                     temp[i] = arr[i] ### temporarily store the array for convenience to merge
                 p1 = low
@@ -137,10 +137,11 @@ def mergeSort(arr):
 
 ### Merge Sort Standard Verison
 def mergeSort(arr, temp, low, high): ### temp should be an array has the same length with arr
-    def merge(arr, temp, low, mid, high):
+    def merge(arr, temp, low, high):
         for i in range(low, high+1):
             temp[i] = arr[i] ### temporarily store the array for convenience to merge
 
+        mid = (low + high) // 2
         p1 = low
         p2 = mid + 1
         for i in range(low, high+1):

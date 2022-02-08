@@ -51,8 +51,20 @@ class MAX_Heap:
 
 
 class Heap:
-    heap = [] ### min heap
+    def __init__(self, array=[]):
+        self.heap = array
+        self.heapify()
 
+    ### TC: O(n) 一共n/2个根节点，每个节点最多交换2次
+    def heapify(self): ### 对每层（从下往上）根节点做sift down (不用sift up是因为，可以无视掉叶子点)
+        leaf = len(self.heap) - 1
+        parent = (leaf - 1) // 2
+        if parent >= 0:
+            for i in range(parent, 0, -1):
+                self.siftDown(i)
+
+
+    ### TC: O(logn)
     def siftUp(self, idx):
         if idx > 0: ### still can go up
             parent = (idx - 1) // 2
@@ -60,6 +72,7 @@ class Heap:
                 self.heap[parent], self.heap[idx] = self.heap[idx], self.heap[parent]
                 self.siftUp(parent) ### keep sifting up
 
+    ### TC: O(logn)
     def siftDown(self, idx):
         left  = 2*idx + 1 ### left child
         right = 2*idx + 2 ### right child
@@ -73,16 +86,18 @@ class Heap:
                 self.heap[left], self.heap[idx] = self.heap[idx], self.heap[left] ### swap
                 self.siftDown(left) ### keep sifting down
         elif left < len(self.heap):
-            if self.heap[left] > self.heap[idx]:
+            if self.heap[left] >= self.heap[idx]:
                 return
             else:
                 self.heap[left], self.heap[idx] = self.heap[idx], self.heap[left] ### swap
                 self.siftDown(left) ### keep sifting down
 
+    ### TC: O(logn)
     def push(self, x):
         self.heap.append(x) ### place the new node at the bottom of the heap
         self.siftUp(len(self.heap)-1) ### sift up until the heap property maintains
 
+    ### TC: O(logn)
     def pop(self):
         if len(self.heap) == 0:
             return None
@@ -105,7 +120,7 @@ class Heap:
 
 
 '''
-Heap Sort:
+Heap Sort: TC: O(nlogn)
 Built a heap from the original array.
 Keep poping the heap and put the MAX into the bottom.
 After all nodes are popped, we will have a new sorted array.

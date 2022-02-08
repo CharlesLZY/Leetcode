@@ -26,7 +26,7 @@ Double Linked List is used to achieve O(1) to delete the tail node (which is the
 and O(1) to push the most recently used resource to the head.
 '''
 
-class DLinkedNode(): 
+class DLinkedNode: 
     def __init__(self, key=None, value=None):
         self.key = key
         self.val = value
@@ -37,7 +37,7 @@ class LRUCache:
 
     def __init__(self, capacity):
         self.capacity = capacity
-        self.size = 0
+        self.size = 0 ### current size
         self.head = DLinkedNode()
         self.tail = DLinkedNode()
         self.head.next = self.tail

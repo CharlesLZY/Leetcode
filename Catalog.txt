@@ -90,6 +90,7 @@ JZ76 删除重复节点 (维护一个prev)
 LC2 用链表模拟两个数相加 (维护一个addition carry flag)
 LC25 k个一组倒序链表 (递归返回newhead或者遍历，遍历解法要耐心，多画图给理清楚，子问题就是倒序链表)
 LC146 LRU Cache (hashmap + double linked list, head和tail node负责O(1)插入或者删除, hashmap负责O(1)查找, 要额外实现moveToHead, addToHead, delete)
+LC460 LFU Cache (hastmap + double linked lists(freq lists)) Hash Table: {key : DLinkedNode} freq Table: {freq: DlinkedList}
 LC148 排序链表 (merge sort, 用快慢指针找中点, 找到之后要把前后两段剪开再去递归)
 LC234 判断链表是否是回文的 (递归,需要维护一个全局的cur, 递归会一直到链表的tail,然后再一层一层回来, cur则正向往下走, 也可以用快慢指针，把后一半reverse，然后一一比对，这样可以实现O(1))
 LC287 数组中重复的数字 (链表找环入口)

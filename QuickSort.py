@@ -102,7 +102,7 @@ def QuickSort(arr, low, high):
         for i in range(low, high): ### pivot is arr[high], so we pass over arr[high]
             if arr[i] < pivot:
                 arr[j], arr[i] = arr[i], arr[j] ### easy to make a mistake (write j as i) here
-                j += 1 ### from left to right
+                j += 1 ### only update when meet number smaller than pivot
 
         arr[j], arr[high] = arr[high], arr[j] ### swap pivot and arr[j]
         QuickSort(arr,low,j-1)
