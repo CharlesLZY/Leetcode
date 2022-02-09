@@ -48,7 +48,7 @@ class Solution:
 [2, 3, 4, 7]: has right child => leftmost child of its right sub-tree
 
 [1]: left child => father
-[5, 6]: right child => first grand father whose left child is its father
+[5, 6]: right child => first parent which is a left child
 These two kinds are basically the same
 
 
@@ -65,8 +65,9 @@ class Solution:
                     temp = temp.left
                 return temp
             else:
-                while pNode.next:
-                    if pNode.next.left and pNode.next.left.val == pNode.val:
+                while pNode.next: ### while still have parent
+                    ### the first parent which is a left child
+                    if pNode.next.left and pNode.next.left.val == pNode.val: ### pnode is the left child of pnode.next
                         return pNode.next
                     pNode = pNode.next
 

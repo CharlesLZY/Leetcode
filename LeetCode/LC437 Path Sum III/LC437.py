@@ -26,8 +26,8 @@ class Solution:
                 curSum += node.val
                 if curSum == targetSum:
                     self.res += 1
-                DFS(node.left, curSum)
-                DFS(node.right, curSum)
+                DFS(node.left, curSum) ### keep searching
+                DFS(node.right, curSum) ### keep searching
 
         def startPathFrom(node):
             if node:

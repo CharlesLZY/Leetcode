@@ -25,9 +25,9 @@ class Solution:
                     right = isSame(p1.right, p2.right) if p2.right else True
                     return left and right
 
-                else: ### p2 must not be None, so if p1 is None, return False
+                else: 
                     return False
-            else:
+            else: ### p2 must not be None, so if p1 is None, return False
                 return False
 
         if pRoot2 is None: ### corner case: empty tree is not considered as a sub-tree

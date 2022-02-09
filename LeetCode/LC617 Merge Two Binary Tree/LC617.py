@@ -66,7 +66,7 @@ class Solution:
 
         stack = [(root1, root2)]
         while stack:
-            node1, node2 = stack.pop()
+            node1, node2 = stack.pop() ### node1 must not be None
             if node2 is None: ### trick: if node1 or node2 is None, the node should be handle correctly before this recursion
                 continue
             node1.val += node2.val

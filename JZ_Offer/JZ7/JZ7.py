@@ -63,3 +63,17 @@ class Solution:
             root.right = self.constructFromPrePost(pre[loc+2:], post[loc+1: len(post)-1])
 
         return root
+
+'''
+pre-order: 
+[ root | left-child . . . | right-child . . . ]
+          <- left tree ->    <- right tree -> 
+
+post-order: 
+[ . . . left-child | . . . right-child | root]
+  <- left tree ->    <- right tree -> 
+
+in-order
+[ . left-child . . | root | . . right-child . ]
+  <- left tree ->            <- right tree -> 
+'''

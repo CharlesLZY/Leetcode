@@ -24,7 +24,7 @@ class Solution:
         DP_table = [0]*(num+1)
         DP_table[0] = 1 ### trick: empty tree counts for one structure
         DP_table[1] = 1 
-        for n in range(2,num+1): ### iterate different root DP[i]
+        for n in range(2, num+1): ### iterate different root DP[i]
             for i in range(1, n+1): ### F(i,n)
                 DP_table[n] += DP_table[i-1] * DP_table[n-i]
         return DP_table[num]

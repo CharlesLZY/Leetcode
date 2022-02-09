@@ -21,7 +21,7 @@ class Solution:
             root = sequence[high]
             right = high - 1
             left = low
-
+            ### in BST, right branch must be larger than root and left branch
             while sequence[right] > root and right >= left: ### decide whether belongs to the right sub-tree
                 right -= 1
 
@@ -57,8 +57,11 @@ Preorder: 2 1 3 (Also can be a postorder like below)
     2
 '''
 
+
 '''
-前序，中序，后序都可以看成一个push顺序，然后其他的看成pop顺序，但树可以长成各种各样，将排序后的数组作为中序遍历可以确保这是一个BST
+可以把一种遍历顺序看成一个push顺序，然后把另外一种遍历顺序看成pop顺序，但树可以长成各种各样，将排序后的数组作为中序遍历可以确保这是一个BST
+但这题中，只能把inorder(sorted array)当做push顺序，去检查post-order是不是合法的pop顺序
+反过来，312这个case处理不了
 '''
 
 ### Stack Solution: Check whether sequence is a valid stack pop sequence if we treat the inorder traverse sequence as the stack push order
@@ -77,7 +80,7 @@ class Solution:
         for i in range(len(inorder)):
             if inorder[i] == sequence[j]: ### immediate pop after push
                 j += 1
-                while len(stack) > 0 and sequence[j] == stack[-1]: ### trigger the check chain 
+                while len(stack) > 0 and sequence[j] == stack[-1]: ### trigger the pop chain 
                     stack.pop()
                     j += 1
             else:
@@ -90,3 +93,52 @@ class Solution:
             return False
         else:
             return True
+
+'''
+                1     |     1     |     2     |     2     |     3     |     3     
+              2   3   |   3   2   |   1   3   |   3   1   |   1   2   |   2   1  
+                      |           |           |           |           |               
+pre-order:    1 2 3   |   1 3 2   |   2 1 3   |   2 3 1   |   3 1 2   |   3 2 1
+inorder:      2 1 3   |   3 1 2   |   1 2 3   |   3 2 1   |   1 3 2   |   2 3 1
+post-order:   2 3 1   |   3 2 1   |   1 3 2   |   3 1 2   |   1 2 3   |   2 1 3
+
+
+                1     |     1     |     2     |     2     |     3     |     3     
+              2       |   3       |   1       |   3       |   1       |   2     
+            3         | 2         | 3         | 1         | 2         | 1              
+pre-order:    1 2 3   |   1 3 2   |   2 1 3   |   2 3 1   |   3 1 2   |   3 2 1
+inorder:      3 2 1   |   2 3 1   |   3 1 2   |   1 3 2   |   2 1 3   |   1 2 3
+post-order:   3 2 1   |   2 3 1   |   3 1 2   |   1 3 2   |   2 1 3   |   1 2 3
+
+
+                1     |     1     |     2     |     2     |     3     |     3     
+              2       |   3       |   1       |   3       |   1       |   2     
+                3     |     2     |     3     |     1     |     2     |     1              
+pre-order:    1 2 3   |   1 3 2   |   2 1 3   |   2 3 1   |   3 1 2   |   3 2 1
+inorder:      2 3 1   |   3 2 1   |   1 3 2   |   3 1 2   |   1 2 3   |   2 1 3
+post-order:   3 2 1   |   2 3 1   |   3 1 2   |   1 3 2   |   2 1 3   |   1 2 3
+
+
+                1     |     1     |     2     |     2     |     3     |     3     
+                  2   |       3   |       1   |       3   |       1   |       2  
+                    3 |         2 |         3 |         1 |         2 |         1       
+pre-order:    1 2 3   |   1 3 2   |   2 1 3   |   2 3 1   |   3 1 2   |   3 2 1
+inorder:      1 2 3   |   1 3 2   |   2 1 3   |   2 3 1   |   3 1 2   |   3 2 1
+post-order:   3 2 1   |   2 3 1   |   3 1 2   |   1 3 2   |   2 1 3   |   1 2 3
+
+
+                1     |     1     |     2     |     2     |     3     |     3     
+                  2   |       3   |       1   |       3   |       1   |       2  
+                3     |     2     |     3     |     1     |     2     |     1       
+pre-order:    1 2 3   |   1 3 2   |   2 1 3   |   2 3 1   |   3 1 2   |   3 2 1
+inorder:      1 3 2   |   1 2 3   |   2 3 1   |   2 1 3   |   3 2 1   |   3 1 2
+post-order:   3 2 1   |   2 3 1   |   3 1 2   |   1 3 2   |   2 1 3   |   1 2 3
+
+
+push order: 3 1 2
+3  3' 1  1' 2  2' ： pop order: 3 1 2
+3  3' 1  2  2' 1' ： pop order: 3 2 1
+3  1  1' 3' 2  2' ： pop order: 1 3 2
+3  1  2  2' 1' 3' ： pop order: 2 1 3
+3  1  1' 2  2' 3' ： pop order: 1 2 3
+'''

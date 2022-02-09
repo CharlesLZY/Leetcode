@@ -58,13 +58,17 @@ class Solution:
         queue = [root] ### BFS
         while queue:
             cur = queue.pop(0)
-            if cur == p and (contain(cur.left, q) or contain(cur.right, q)):
+            l1 = contain(cur.left, p)
+            r1 = contain(cur.right, p)
+            l2 = contain(cur.left, q)
+            r2 = contain(cur.right, q)
+            if cur == p and (l2 or r2):
                 return cur
-            elif cur == q and (contain(cur.left, p) or contain(cur.right, p)):
+            elif cur == q and (l1 or r1):
                 return cur
-            elif contain(cur.left, q) and contain(cur.right, p):
+            elif l2 and r1:
                 return cur
-            elif contain(cur.left, p) and contain(cur.right, q):
+            elif l1 and r2:
                 return cur
             else:
                 if cur.left: 

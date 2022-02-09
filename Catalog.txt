@@ -3,25 +3,25 @@
 ### 树 (递归是树的常见解法)
 JZ7 中序+前/后序还原二叉树 (递归,通过前/后序确定root,中序确定左右子树vin.index(root))
 LC889 前序+后序还原二叉树 (假设pre[1]是左支，通过后序来确定左支的长度post.index(left))
-JZ8 二叉树的中序遍历的下一个节点 (画图分类讨论,有右支:右支最左;无右支:第一个左支是自己的父节点)
-JZ26 判断一棵树是不是另一棵树的子树 (递归对每个和root2相同的节点都调用hasSubtree，递归调用isSame)
+JZ8 二叉树的中序遍历的下一个节点 (画图分类讨论,有右支:右支最左;无右支:第一个是左子节点的父亲)
+JZ26 判断一棵树是不是另一棵树的子树 (hasSubtree调用isSame，对自己的左右子树递归调用hasSubtree，isSame对双方的左右子树递归调用isSame)
 JZ27/LC226 镜像反转二叉树 (每次递归交换左右子树，然后对子树递归)
 JZ28/LC101 判断二叉树是否对称 (比较要两个树比, isSymmetric(p1.left, p2.right) and isSymmetric(p1.right, p2.left))
 JZ32 层序遍历二叉树 (BFS Queue就完了)
-JZ33 检查数组是不是BST后序遍历 (把中序遍历看成是push的顺序，判断后序遍历是不是一个合法的pop顺序) （找到第一个不大于root的，剩下的检查是不是都是小于root，然后对左右子树递归）
+JZ78 按行打印二叉树 (bfs, 把depth也放到queue state里面)
+JZ33 检查数组是不是BST后序遍历 (把中序遍历看成是push的顺序，判断后序遍历是不是一个合法的pop顺序 JZ31) （找到第一个不大于root的，剩下的检查是不是都是小于root，然后对左右子树递归）
 JZ34/LC112 二叉树中和为某一值的全部从根到叶的路径 (DFS)
 JZ82/LC113 二叉树中是否存在和为某一值的从根到叶的路径 (DFS)
 JZ84/LC437 二叉树中和为某一值的路径,不要求从根出发,也不要求叶节点结束，但是得从上到下 (DFS, 对每个节点都findpath一遍，res达到了target也继续找)
 JZ36/LC426 BST转化成排序双向链表 (中序遍历，维护一个全局变量prev，记录当前节点的上一个是谁)
+JZ54 BST第k的节点 (中序遍历，维护一个全局变量n记录现在是第几个元素，每次递归完回来，判断一下是否已经找到了)
 JZ37 序列化二叉树 (DFS或BFS 解码和编码保持一样的操作，DFS用递归，BFS用queue)
 LC449 序列化BST (存一个先序遍历就够了,通过中序和先序还原)
-JZ54 BST第k的节点 (中序遍历，维护一个全局变量n记录现在是第几个元素)
 JZ55 二叉树的深度 (递归就完了)
 JZ68 BST最近公共祖先 (三种情况left mid left，占两种就找到了。 利用BST特性，可以更简单，如果当前节点值为p或者q，就找到了，如果p,q不在同侧也找到了)
 JZ86/LC236 二叉树最近公共祖先 (三种情况left mid left，占两种就找到了)
-JZ77 z字形打印二叉树 (bfs, 把depth也放到queue state里面)
-JZ78 按行打印二叉树 (bfs, 把depth也放到queue state里面)
-JZ79/LC110 判断是不是平衡二叉树 (子问题是求二叉树的深度，abs(depth(left)-depth(right)) <= 1)
+JZ77 z字形打印二叉树 (bfs, 把depth也放到queue state里面, 每层分开存, 遍历完之后, 偶数层reverse一下)
+JZ79/LC110 判断是不是平衡二叉树 (子问题是求二叉树的深度，abs(depth(left)-depth(right)) <= 1, 最优解是在求深度的时候同时判断是否平衡)
 LC96 给定节点有多少种BST (DP 中序遍历固定为排序后的数组,选定root,子结构是左右子树有多少种摆法，乘起来)
 LC98 验证是不是BST (中序遍历完看看是不是sorted的, 或者递归检查)
 LC108 排序数组转化成平衡BST (递归,每次取中点做根,左右平均分做子树)
@@ -31,9 +31,10 @@ LC114 按照先序遍历的顺序把二叉树弄成链表 (递归，leftTail = s
 LC124 二叉树最大路径(可以从叶节点到叶节点) (leftPath = max(0, halfPath(node.left) halfPath return max(leftPath,rightPath)+node.val MAX一定是leftHalf+node.val+rightHalf))
 LC543 二叉树的直径 (最大直径一定是 leftPath + rightPath，但是maxHalfPath(node)返回的是max(leftPath, rightPath) + 1)
 LC208 前缀树 (TrieNode 要维护自己是否是一个单词的结尾, 同时自己有26个children(对应26个字符))
-LC538 BST的每个节点的值都加上比他小的所有节点值的和 (维护一个全局变量记录目前累加值,然后中序遍历)
+LC538 BST的每个节点的值都加上比他小的所有节点值的和 (维护一个全局变量记录目前累加值,然后从右往左中序遍历)
 LC617 合并二叉树,直接节点相加 (merge(r1, r2), 如果有一个是None，直接返回另外一个,递归到此结束, 其他情况再r1.left = merge(r1.left, r2.left) 最后返回r1)
-
+LC94/LC144/LC145 如何用stack实现是难点，postorder：额外存一个bool，第一次pop出来，再放回去，第二次pop再访问。
+inorder：如果栈顶的元素不是None，就把它的左支push进栈，如果栈顶的元素是None，说明可以访问它的上一个元素了，再把上一个元素的右支push进栈
 
 
 ### 数组
@@ -68,6 +69,8 @@ LC560 有多少连续子序和为指定值 (hashtable 存累计和, 遍历一遍
 LC621 Task Scheduler 相同任务之间得间隔n,可以用idle填槽 (用Counter统计每个任务的freq, 维护一个max heap(存每个任务的待完成次数), 每一个slot长度为n+1，从heap里面pop元素填slot,要么填满或者heap空了,然后一一检查slot里面的元素,给待完成次数-1，如果不为0就放回heap，如果heap还有东西，说明前面的slot不是最后一个slot,直接ans += n+1)
 LC398 给定一个目标值随机从数组中返回一个index (要么hash table 存一下相同数的index, 要么reservoir sampling)
 LC259 3Sum smaller (简单的就是锁定一个pivot然后用双指针不断缩小, 复杂一点的就是二分查找(查找最小的大于k的数和查找最大的小于k的数,难点在于处理corner case))
+LC217/219 数组中是否包含重复的数字 (hash table存一下之前的， sliding window 维护k长度)
+LC220 数组中是否包含两个数的差值在t之内 (hash table用num // t当idx, 这样相当于标记了[num, num + t)开区间，左邻区间和num+t仍要检查, 同时要注意t可能等于0)
 
 ### 二维数组
 JZ4 行列递增二维数组的查找 (start from (1,n), eliminate one col/row each time)
@@ -115,7 +118,8 @@ LC394 解码字符串 k[xxx] (首先parse数字的时候,可能不止一位parse
 
 
 ### DP
-JZ10 斐波那契数列
+LC204 数小于n的素数有几个 (for p in range(2, int(sqrt(n)) + 1):, p的倍数全部不是素数，用primes = [False, False] + [True] * (n - 2)标记)
+LC70 斐波那契数列
 JZ14 剪绳子 (DP[n] = max_i: i * max(n-i, DP[n-i]) 因为至少要剪2刀，i是第一段的长度，不能只用DP[n-i], 是因为DP是至少剪了一刀，不剪可能更长) 
 JZ19/LC10 正则匹配 (维护s_i和p_j, 先看是不是_*, 如果是先跳过2个,看看能不能匹配上,再匹配当前，只有当p_j超出长度且s_i刚好匹配完，才返回true，s_i 跑完了返回False不能放在开头判断，因为有可能现在还处在.* )
 JZ46 数字对应26个字母 (类似于跳台阶)
@@ -190,6 +194,7 @@ LC739 给一个数组每个位置要过多少天才能遇到更大的 (维护一
 LC581 最短无序子序 (正着跑一遍 维护ascending stack, 遇到递减的,它会一直pop stack里面的index,直到来到他应该在的位置, 记录最小的misplaced index, 类似的倒着来一遍，找到最大的misplaced index)
 
 ### Fancy Skills
+LC8 atoi (检查overflow的时候，只用检查是不是超过INT_MAX // 10或者result == INT_MAX // 10 and digit > INT_MAX % 10, 因为INT_MIN范围比INT_MAX大1)
 JZ15 二进制中1的个数 (负数的补码 n&0xffffffff)
 JZ16/LC50 快速幂 (首先要把指数转换为正数，然后根据指数这一位是不是1，更新ans，每次都要平方底数和位移指数)
 JZ43 自然数中1出现的次数 (观察0-9,10-99 ... ，猜一个答案)

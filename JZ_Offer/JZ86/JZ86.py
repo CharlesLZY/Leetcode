@@ -70,6 +70,38 @@ class Solution:
                 if cur.right:
                     queue.append(cur.right)
 
+class Solution:
+    def lowestCommonAncestor(self, root, o1, o2):
+        def contain(node, target):
+            if node is None:
+                return False
+            elif node.val == target:
+                return True
+            else:
+                return contain(node.left, target) or contain(node.right, target)
+
+        queue = [root] ### BFS
+        while queue:
+            cur = queue.pop(0)
+            l1 = contain(cur.left, o1)
+            r1 = contain(cur.right, o1)
+            l2 = contain(cur.left, o2)
+            r2 = contain(cur.right, o2)
+            if cur.val == o2 and (l1 or r1):
+                return cur.val
+            elif cur.val == o1 and (l2 or r2):
+                return cur.val
+            elif l1 and r2:
+                return cur.val
+            elif l2 and r1:
+                return cur.val
+            else:
+                if cur.left: 
+                    queue.append(cur.left)
+                if cur.right:
+                    queue.append(cur.right)
+
+
 ### TC: O(n) and SC: O(n)
 class Solution:
     ans = None
