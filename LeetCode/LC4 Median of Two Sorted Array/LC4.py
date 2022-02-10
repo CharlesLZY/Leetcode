@@ -35,7 +35,7 @@ nums2: 1 2 4 | 12
 rightMIN = arr[partition]
 leftMAX = arr[partition-1]
 
-if leftMAX_1 <= rightMIN_2 (which means nums1[:p1] <= nums2[p2:]) and leftMAX_2 <= rightMIN (which means nums2[:p2] <= nums1[p1:])
+if leftMAX_1 <= rightMIN_2 (which means nums1[:p1] <= nums2[p2:]) and leftMAX_2 <= rightMIN_1 (which means nums2[:p2] <= nums1[p1:])
 and we have p1 + p2 = (m+n)//2 half of numbers
 then we find the correct median partition
 
@@ -57,8 +57,10 @@ class Solution:
             nums1, nums2, m, n = nums2, nums1, n, m
 
         lp = 0 
+        ######## IMPORTANT ########
         rp = m ### the partition ranges from 0 to len(arr), so we use m instead of m-1
-
+        ######## IMPORTANT ########
+        
         while True: ### trick: the partion must exist
         ### while lp <= ro:
             p1 = (lp + rp)//2 ### partition for nums1

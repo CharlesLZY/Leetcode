@@ -40,7 +40,7 @@ class MAX_Heap:
     heap = [] ### min heap
     def __init__(self, array):
         for num in array:
-            self.push(num)
+            self.push(num) ### cannot use heapify, because we are implementing max heap
     def push(self, x):
         heappush(self.heap, -x)
     def pop(self):
@@ -65,7 +65,7 @@ class Solution:
             ### the slot is composed of the most hurried tasks (task which has the most time to be done) 
             ### and other less hurried tasks to fill the cooldown period 
             slot = [] 
-            for i in range(n+1): ### the slot is supposed to be n+1 long
+            for i in range(n+1): ### a slot is supposed to be n+1 long where n is cooldown period
                 if len(maxHeap) > 0: ### if we still have tasks not in the slot to put 
                     slot.append(maxHeap.pop()) ### always put the most hurried task, the task will be pop from the heap to maintain the cooldown period
 

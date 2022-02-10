@@ -10,7 +10,9 @@ find the number of index triplets i, j, k with 0 <= i < j < k < n that satisfy t
 # @param target int 
 # @return int
 
-
+'''
+找一共有多少对
+'''
 ### Sub-problem: 2Sum Smaller
 ### Two Pointer Solution
 def twoSumSmaller(nums, target):
@@ -38,7 +40,7 @@ def twoSumSmaller(nums, target):
             if nums[mid] < n:
                 lp = mid + 1
             else:
-                rp = mid
+                rp = mid ### mid = (lp + rp) // 2 and while lp < rp implies rp > mid, so this will not cause infinite loop
         return lp if nums[lp] >= n else -1
 
     nums.sort() ### binary search can only be applied to sorted array
@@ -121,7 +123,7 @@ class Solution:
 
 
 ### Binary Search Solution
-### TC: O(nlogn) and SC: O(1)
+### TC: O(n*nlogn) and SC: O(1)
 class Solution:
     def threeSumSmaller(self, nums, target):
         def twoSumSmaller(start, target): ### the array should be sorted
@@ -161,7 +163,7 @@ class Solution:
         return ans
 
 ### Binary Search Solution
-### TC: O(nlogn) and SC: O(1)
+### TC: O(n*nlogn) and SC: O(1)
 class Solution:
     def threeSumSmaller(self, nums, target):
         def twoSumSmaller(start, target): ### the array should be sorted

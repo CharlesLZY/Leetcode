@@ -17,11 +17,25 @@ class Solution:
         MAX = 0
         for num in nums:
             curLength = 1
-            if num+1 not in hashTable:
+            if num+1 not in hashTable: ### trick: when the consecutive sequence finished, then count the length
                 while num-1 in hashTable:
                     curLength += 1
-                    hashTable.remove(num-1)
+                    # hashTable.remove(num-1) ### can be deleted
                     num -= 1
+                MAX = max(MAX, curLength)
+        return MAX
+
+class Solution:
+    def longestConsecutive(self, nums):
+        hashTable = set(nums) ### trick: hashTable support O(1) find operation
+        MAX = 0
+        for num in nums:
+            curLength = 1
+            if num-1 not in hashTable: ### trick: when the consecutive sequence finished, then count the length
+                while num+1 in hashTable:
+                    curLength += 1
+                    
+                    num += 1
                 MAX = max(MAX, curLength)
         return MAX
 

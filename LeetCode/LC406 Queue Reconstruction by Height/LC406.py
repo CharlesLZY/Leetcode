@@ -27,7 +27,7 @@ Hence [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]] is the reconstructed queue.
 
 '''
 sort people by descending height and ascending rank
-[[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]] -> [[7,0],[7,1],[6,1],[5,0],[5,2],[4,4]]
+[[7,0],[4,4],[7,1],[5,0],[6,0],[6,1],[5,2]] -> [[7,0],[7,1],[6,0],[6,1],[5,0],[5,2],[4,4]]
 
 The relative position between people have the same height is fixed, which is rank-ascending order
 Set higher people first because lower people will not affect them wherever the position the lower people are.
@@ -46,3 +46,15 @@ class Solution:
             ### the relative position between people and other people whose height is larger or equal is fixed
             ans.insert(rank, p) ### just insert the people according to its rank
         return ans
+'''
+[[7,0],[7,1],[6,1],[5,0],[5,2],[4,4]]
+高个的相对位置不会受矮个影响，自身的rank决定, 每次插的都是剩下的人里面最高的，所以rank只会收到已经插了的人影响，所以直接按rank插
+先插身高是7的（因为已经按rank排过序了，所以同身高的相对顺序没问题，且rank不会受之后插的身高更小的人影响）
+ans = [[7,0], [7,1]]
+再插身高是6的
+ans = [[6,0], [6,1],  [7,0], [7,1]]
+再插身高是5的
+ans = [[5,0], [6,0], [5,2], [6,1],  [7,0], [7,1]]
+再插身高是4的
+ans = [[5,0], [6,0], [5,2], [6,1], [4,4], [7,0], [7,1]]
+'''

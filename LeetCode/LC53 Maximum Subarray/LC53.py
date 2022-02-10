@@ -15,14 +15,14 @@ class Solution:
         MAX = nums[0]
         cur = nums[0]
         for n in nums[1:]:
-            cur = max(n, cur+n)
-            MAX = max(cur, MAX)
+            curMAX = max(n, curMAX+n)
+            MAX = max(curMAX, MAX)
         return MAX
 
 '''
 Intuitive DP Solution
 DP[i] Maximum sum of sub-array ending at i ### the key point: sub-array ending at i
-State transition equation: DP[i] = max(DP[i-1]+array[i], array[i])
+State transition equation: DP[i] = max(DP[i-1]+array[i], array[i])  array[i] must be included
 '''
 ### TC: O(n) and SC: O(n)
 class Solution:

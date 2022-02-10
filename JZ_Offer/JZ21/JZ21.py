@@ -30,8 +30,21 @@ class Solution:
             if array[i] % 2 == 1: # odd
                 odd = array[i]
                 for j in range(i-1, loc, -1): ### trick: move from right to left to maintain the relative position
-                    array[j+1] = array[j]
+                    array[j+1] = array[j] ### shift all even numbers
                 loc += 1
-                array[loc] = odd ### similar to quick sort
+                array[loc] = odd
+                
         return array
 
+
+class Solution:
+    def reOrderArray(self, array):
+        loc = 0 
+        for i in range(len(array)):
+            if array[i] % 2 == 1: # odd
+                odd = array[i]
+                for j in range(i-1, loc-1, -1): ### trick: move from right to left to maintain the relative position
+                    array[j+1] = array[j] ### shift all even numbers
+                array[loc] = odd
+                loc += 1
+        return array

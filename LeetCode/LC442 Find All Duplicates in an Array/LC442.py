@@ -11,7 +11,6 @@ You must write an algorithm that runs in O(n) time and uses only constant extra 
 # @param nums List[int]
 # @return List[int]
 
-
 '''
 The trick of this problem is that all the integers of nums are in the range [1, len(array)], , we can use them as index.
 '''
@@ -29,6 +28,7 @@ class Solution:
                     nums[i] = -1 ### marked it was visited
                     i += 1
                 else:
+                    ### important 
                     nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1] ### the order of the assignment statement cannot exchange
         return ans
 

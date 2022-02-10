@@ -2,14 +2,14 @@
 Leetcode 253. Meeting Rooms II
 
 Description:
-Given an array of meeting time intervals intervals where intervals[i] = [start_i, end_i], return the minimum number of conference rooms required.
+Given an array of meeting time intervals where intervals[i] = [start_i, end_i], return the minimum number of conference rooms required.
 '''
 
 # @param intervals List[List[int]] 
 # @return int
 
 '''
-Maintail a min heap according to the end time.
+Maintain a min heap according to the end time.
 The intuition of this solution is from the perspective of the people who want to have a meeting.
 They just check whether the former meeting is finished. If not, just ask a new meeting room.
 '''
@@ -22,7 +22,7 @@ class Solution:
             return 0
 
         intervals.sort(key = lambda x: x[0])
-        minHeap = [intervals[0][1]]
+        minHeap = [intervals[0][1]] ### earliest end time
         heapify(minHeap)
         MAX = 1
         for start, end in intervals[1:]:

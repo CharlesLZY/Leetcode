@@ -21,7 +21,7 @@ class Solution:
     def maxProfit(self, prices):
         low = float("inf")
         MAX = 0
-        for p in prices:
+        for p in prices: ### new price can always substruct the previous low price
             low = min(p, low) ### will keep updating the current lowest price
             MAX = max(MAX, p - low) ### only the current price will substract the lowest price
         return MAX

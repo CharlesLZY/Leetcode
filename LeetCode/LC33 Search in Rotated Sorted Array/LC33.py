@@ -14,7 +14,7 @@ or -1 if it is not in nums.
 You must write an algorithm with O(log n) runtime complexity.
 '''
 
-### Leetcode version is different from JZ offer version. All values of array are unique.
+### Leetcode version is different from JZ offer version. All values in array are unique.
 
 # @param nums List[int]
 # @param target int
@@ -26,18 +26,68 @@ class Solution:
         
         def findPivot():
             left = 0
-            right = len(nums)-1
+            right = len(nums) - 1
             while left < right: ### pivot must exist, if left == right, then that position is the pivot
                 if nums[left] < nums[right]:
                     return left
                 mid = (left + right) // 2
                 if nums[mid] < nums[left]: ### trick: only compare with left
-                    right = mid
+                    right = mid ### while lp < rp and mid = (1p+rp)//2 implies rp > mid, so here we will not cause infite loop
                 elif nums[mid] > nums[left]: ### trick: only compare with left
                     left = mid + 1
                 else:
                     left += 1
             return left
+
+         def findPivot():
+            left = 0
+            right = len(nums) - 1
+            while left < right: ### pivot must exist, if left == right, then that position is the pivot
+                if nums[left] < nums[right]:
+                    return left
+                mid = (left + right) // 2
+                if nums[mid] < nums[right]: 
+                    right = mid
+                elif nums[mid] > nums[right]: 
+                    left = mid + 1
+                else:
+                    right -= 1
+            return left
+
+        def findPivot(): ### if all values in array are unique
+            lp = 0
+            rp = len(nums) - 1
+            if nums[lp] <= nums[rp]:
+                return nums[0]
+
+            while lp <= rp:
+                mid = (lp + rp) // 2
+                if nums[mid] > nums[mid+1]:
+                    return nums[mid + 1]
+                if mid - 1 >= 0 and nums[mid-1] > nums[mid]:
+                    return nums[mid]
+
+                if nums[0] < nums[mid]: ### trick
+                    lp = mid + 1
+                else:
+                    rp = mid - 1
+
+        def findPivot(): ### if all values in array are unique
+            left = 0
+            right = len(nums) - 1
+            if nums[left] <= nums[right]: ### the array is already sorted
+                return 0
+
+            while left <= right:
+                mid = (left + right) // 2
+                if nums[mid] > nums[mid + 1]:
+                    return mid + 1 ### trick
+                if nums[left] > nums[mid]: ### the pivot may be missed, but we will stop at the number just before the pivot
+                    right = mid - 1
+                else: 
+                    left = mid + 1
+            
+
 
         def find(low, high):
             left = low
@@ -71,7 +121,7 @@ class Solution:
     def search(self, nums, target):
         left, right = 0, len(nums) - 1
         while left <= right:
-            mid = left + (right - left) // 2
+            mid = (left + right) // 2
             if nums[mid] == target:
                 return mid
             elif nums[mid] >= nums[left]: ### mid in the left sorted array

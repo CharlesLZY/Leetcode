@@ -47,7 +47,7 @@ class Solution:
                 if numbers[i] == numbers[numbers[i]]:
                     return numbers[i]
                 else:
-                    numbers[numbers[i]], numbers[i] = numbers[i], numbers[numbers[i]] 
+                    numbers[numbers[i]], numbers[i] = numbers[i], numbers[numbers[i]] ### the order of the assignment statement cannot exchange
         return -1 ### no duplicated number
 
 

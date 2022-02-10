@@ -39,7 +39,7 @@ If we use hash table to store all cumulative sums, we can check complement to ta
 ### TC: O(n) and SC: O(n)
 class Solution:
     def subarraySum(self, nums, k):
-        hashTable = {0:1}
+        hashTable = {0:1} ### sum : times it appeared
         ans = 0
         curSum = 0
         for num in nums:

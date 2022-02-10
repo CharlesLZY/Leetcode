@@ -31,7 +31,7 @@ class Solution:
     def lengthOfLongestSubstring(self, s):
         MAX = 0
         hashTable = [-1] * 128 ### ASIIC 
-        lp = 0 
+        lp = 0 ### the left end of current subsring without repeating characters
         for i in range(len(s)):
             cur = s[i]
             if hashTable[ord(cur)] >= lp: ### the repeated char occurs in the window, default is -1 (never occur)

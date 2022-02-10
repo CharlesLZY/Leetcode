@@ -18,7 +18,7 @@ class Solution:
             while lp < rp:
                 mid = (lp + rp) // 2
                 if arr[mid] >= k: ### we want to find the left upper boundary that any number on the left side of the boundary is smaller than k
-                    rp = mid
+                    rp = mid ### while lp < rp and mid = (1p+rp)//2 implies rp > mid, so here we will not cause infite loop
                 else: ### arr[mid] < k
                     lp = mid + 1
             return lp
@@ -33,3 +33,28 @@ class Solution:
                 return last - first
         else: ### corner case: empty array
             return 0
+
+
+class Solution:
+    def GetNumberOfK(self , data, k):
+        # write code here
+        def search(n):
+            lp = 0
+            rp = len(data) - 1
+            while lp <= rp:
+                mid = (lp + rp) // 2
+                if data[mid] > n:
+                    rp = mid - 1
+                elif data[mid] < n:
+                    lp = mid + 1
+                elif data[mid] == n:
+                    rp = mid - 1
+            return min(lp,rp)
+        
+        
+        if len(data) == 0: ### corner case
+            return 0
+        lp = search(k)
+        rp = search(k+1)
+        
+        return rp - lp
