@@ -41,7 +41,7 @@ class Solution:
                 return False
         return check(head)
 
-### Two Pointer Solution
+### Two Pointer Solution (reverse half of the list)
 ### TC: O(n) and SC: O(1)
 class Solution:
     def isPalindrome(self, head):

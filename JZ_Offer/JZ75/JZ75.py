@@ -12,16 +12,13 @@ class Solution:
     hashTable = [0]*128
     queue = []
     def FirstAppearingOnce(self):
-        if len(self.queue) == 0:
-            return '#'
-        cur = self.queue[0]
-        while self.hashTable[ord(cur)] > 1:
-            self.queue.pop(0)
-            if len(self.queue) > 0:
-                cur = self.queue[0]
+        while self.queue: ### can not use for char in queue because queue can not be modified while iteration
+            char = self.queue[0]
+            if self.hashTable[ord(char)] > 1:
+                self.queue.pop(0)
             else:
-                return '#'
-        return cur
+                return char
+        return '#'
 
 
     def Insert(self, char):

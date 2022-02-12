@@ -8,7 +8,7 @@ then the whole array will be sorted in ascending order.
 Return the shortest such subarray and output its length.
 
 Example:
-Input: nums = [2,5,6,4,8,10,9,15]
+Input: nums = [2,6,4,8,10,9,15]
 Output: 5  ([6, 4, 8, 10, 9])
 
 '''

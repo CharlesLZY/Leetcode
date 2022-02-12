@@ -39,13 +39,13 @@ class Solution:
                 ### find middle point
                 slow = head
                 fast = head
-                prev = None
+                prev = None ### trick
                 while fast and fast.next:
                     prev = slow
                     fast = fast.next.next
                     slow = slow.next
                 prev.next = None ### trick: must cut the whole list into two lists
-                return merge(mergeSort(head), mergeSort(slow))
+                return merge(mergeSort(head), mergeSort(slow)) ### middle must use slow rather than slow.next, if use slow.next will failed in length=2
 
             else: ### the length of the linked list <= 1
                 return head 

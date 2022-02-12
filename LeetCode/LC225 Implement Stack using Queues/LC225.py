@@ -27,20 +27,10 @@ class MyStack:
     '''
 
     |     |         |     |
-    |  3  |         |  2  |
-    |  1  |   -->   |  3  |
-    |  2  |         |  1  |
-    |—————|         |—————|
-
-     queue           queue
-
-    Step 2:
-
-    |     |         |     |
-    |  2  |         |  1  |
-    |  3  |   -->   |  2  |
-    |  1  |         |  3  |
-    |—————|         |—————|
+    |  3  |         |  1  |     for i in range(len(self.queue)-1):
+    |  1  |   -->   |  2  |         self.queue.append(self.queue.pop(0))
+    |  2  |         |  3  |
+    |—————|         |—————| 
 
      queue           queue
 
@@ -48,7 +38,7 @@ class MyStack:
 
     def push(self, x):
         self.queue.append(x)
-        for i in range(len(self.queue)-1):
+        for i in range(len(self.queue)-1): ### remain the number we just appended
             self.queue.append(self.queue.pop(0))
 
         

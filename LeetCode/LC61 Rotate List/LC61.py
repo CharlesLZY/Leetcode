@@ -28,7 +28,7 @@ class Solution:
         while fast.next:
             length += 1
             fast = fast.next
-
+        ### leetcode定义的旋转次数，每旋转一次把最后一个node放到最前面，(所以可以无限转下去)
         k = k % length ### trick: to avoid repeated iteration
 
         if k == 0: ### trick: the new head is the same as the old head
@@ -37,14 +37,11 @@ class Solution:
         fast = dummy
         slow = dummy
         i = 0
-        while i < k:
-            if fast.next:
-                fast = fast.next
-            else:
-                fast = head
+        while i < k:    
+            fast = fast.next ### fast move advance k steps
             i += 1
         
-        while fast.next:
+        while fast.next: ### find pivot
             fast = fast.next
             slow = slow.next
 

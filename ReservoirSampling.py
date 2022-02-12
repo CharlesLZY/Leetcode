@@ -23,10 +23,13 @@ And the cumulative probability of not being replaced is m/(m+1) * (m+1)/(m+2)
 For the number m+1, when i = m+2, the probability it will be replaced is p(i) * 1/m = m/(m+2) * 1/m = 1/(m+2).
 So the probability of not being replaced is 1 - 1/(m+2) = (m+1)/(m+2)
 
+We can find that:
+for i <= m, R(i, N) = m/(m+1) * (m+1)/(m+2) * ... * (N-1)/N = m/N
+for i  > m, R(i, N) = i/(i+1) * (i+1)/(i+2) * ... * (N-1)/N = i/N
 when i <= m : R(i, N) =  m / N   P(i) = p(i) * R(i,N) =   1 * m/N = m/N
 when i  > m : R(i, N) =  i / N   P(i) = p(i) * R(i,N) = m/i * i/N = m/N
 
-We can find that, for i <= m, R(i) = m/(m+1) * (m+1)/(m+2) * ... * (N-1)/N = m/N
+
 
 e.g. when m = 1
 If we have a total of n numbers and we pick the ith number, this implies that we do not pick any number further from index i+1 to n.
@@ -38,7 +41,9 @@ P(4) = 1/4 * ... * (1-1/N) = 1/N
 P(N) = 1/N
 
 '''
-
+'''
+蓄水池算法关键在于维护一个蓄水池，每次遇到新的候选人，有概率选中，蓄水池中的元素则有概率被替换
+'''
 import random
 def reservoirSampling(data, m):
 	reservoir = data[:m]

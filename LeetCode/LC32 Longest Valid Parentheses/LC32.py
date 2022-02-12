@@ -19,7 +19,7 @@ class Solution:
         for i in range(len(s)):
             if s[i] == '(':
                 stack.append(i)
-            else:
+            else: ### s[i] == ')'
                 if len(stack) == 1: ### in this case, all '(' are paired and the latest invalid ')' position need to be updated
                     stack[0] = i
                 elif len(stack) > 1: ### still have unpaired '('

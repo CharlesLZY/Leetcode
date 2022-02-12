@@ -15,6 +15,7 @@ JZ62 孩子们的游戏(圆圈中最后剩下的数)
 
 
 ### Linked List Solution
+### TC: O(n^2) and SC: O(n)
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -49,7 +50,7 @@ class Solution:
 那么第一个出去的是编号m-1的小朋友
 新的一轮可以看成同样的问题，
 只不过从编号m的小朋友重新开始报数（编号为m的小朋友在新的一轮视为编号0），每个人的编号会存在一个映射关系
-原编号x  新编号x'
+原编号f(n,m)  新编号f(n-1,m)
     m   -> 0
     m+1 -> 1
        ...
@@ -60,17 +61,18 @@ class Solution:
     m-3 -> n-3
     m-2 -> n-2
 
-可以发现x' = (x + m) % n
+可以发现f(n,m) = (f(n-1,m) + m % n) % n
+%n 这个操作是把
 '''
 
 ### TC: O(n) and SC: O(n)
 class Solution:
     def LastRemaining_Solution(self, n, m):
-        def idx(n,m):
+        def idx(n,m): ### the last people who will be left
             if n <= 1:
                 return 0
             else:
-                return (idx(n-1,m) + m) % n
+                return (idx(n-1,m) + m % n) % n
         if n == 0: ### corner case
             return - 1
         else:

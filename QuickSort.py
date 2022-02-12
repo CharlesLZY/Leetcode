@@ -1,7 +1,7 @@
 '''
 Quick Sort
 TC: Best case O(nlogn) Worst case O(n^2)
-SC: Best case O(logn) Worst case O(n)
+SC: Best case O(logn) Worst case O(n) ###其实是看最少要递归多少次, 因为inplace的实现不考虑递归对栈的消耗, SC就是O(1)
 Space complexity is determined by the times of recursion.
 Tail recursion will not expand extra space because it does not need to store the context to rusume previous codes.
 
@@ -107,6 +107,23 @@ def QuickSort(arr, low, high):
         arr[j], arr[high] = arr[high], arr[j] ### swap pivot and arr[j]
         QuickSort(arr,low,j-1)
         QuickSort(arr,j+1, high)
+
+### Non-recursive Version of Quick Sort (Simulate the stack)
+def quickSort(arr):
+    
+    stack = [(0, len(arr)-1)] ### simulate the stack, initialize the first call
+    while stack:
+        low, high = stack.pop(0)
+        if low < high:
+            pivot = arr[high]
+            j = low
+            for i in range(low, high):
+                if arr[i] < pivot:
+                    arr[i], arr[j] = arr[j], arr[i]
+                    j += 1
+            arr[high], arr[j] = arr[j], arr[high]
+            stack.append((low, j-1))
+            stack.append((j+1, high))
 
 
 import random

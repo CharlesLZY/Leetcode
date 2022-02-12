@@ -49,7 +49,24 @@ def quickSort(array, low, high):
         array[j], array[high] = array[high], array[j]
         QuickSort(array,low,j-1)
         QuickSort(array,j+1, high)
+
+### Non-recursive Version of Quick Sort (Simulate the stack)
+def quickSort(arr):
     
+    stack = [(0, len(arr)-1)] ### simulate the stack, initialize the first call
+    while stack:
+        low, high = stack.pop(0)
+        if low < high:
+            pivot = arr[high]
+            j = low
+            for i in range(low, high):
+                if arr[i] < pivot:
+                    arr[i], arr[j] = arr[j], arr[i]
+                    j += 1
+            arr[high], arr[j] = arr[j], arr[high]
+            stack.append((low, j-1))
+            stack.append((j+1, high))
+
 
 
 def mergeSort(arr, aux, low, high): ### temp should be an array has the same length with arr

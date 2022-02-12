@@ -63,3 +63,43 @@ class Solution:
             else:
                 ans.append(findPath(q[0], q[1], 1, [])) 
         return ans
+
+
+### Another version
+class Solution:
+    def calcEquation(self, equations, values, queries):
+        ### build graph
+        graph = {} ### use nested dict to simulate graph
+        for i in range(len(equations)):
+            dividend, divisor = equations[i]
+            if dividend not in graph:
+                graph[dividend] = {}
+            graph[dividend][divisor] = values[i]
+            if divisor not in graph:
+                graph[divisor] = {}
+            graph[divisor][dividend] = 1/values[i]
+
+        
+        def findPath(start, end, res, visited):
+            if start == end: ### corner case
+                return 1
+            visited.append(start)
+            for neighbour in graph[start]:
+                if neighbour not in visited:
+                    temp = res * graph[start][neighbour]
+                    if neighbour == end:
+                        return temp
+                    else:
+
+                        result = findPath(neighbour, end, temp, visited)
+                        if result != -1.0:
+                            return result
+            return -1.0
+
+        ans = []
+        for q in queries:
+            if q[0] not in graph or q[1] not in graph: ### corner case
+                ans.append(-1.0)
+            else:
+                ans.append(findPath(q[0], q[1], 1, []))
+        return ans
