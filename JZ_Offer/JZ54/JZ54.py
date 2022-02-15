@@ -37,3 +37,28 @@ class Solution:
                     return temp
             return -1
         return inorder(proot)
+
+
+### Non-recursive version
+class Solution:
+    def KthNode(self, proot, k):
+        if proot:
+            n = 0
+            stack = [proot]
+            nextToVisit = proot
+
+            while stack:
+                while nextToVisit.left:
+                    stack.append(nextToVisit.left)
+                    nextToVisit = nextToVisit.left
+
+                cur = stack.pop()
+                n += 1
+                if n == k:
+                    return cur.val
+
+                if cur.right:
+                    stack.append(cur.right)
+                    nextToVisit = cur.right
+
+        return -1

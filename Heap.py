@@ -55,12 +55,12 @@ class Heap:
         self.heap = array
         self.heapify()
 
-    ### TC: O(n) O(n * \sum_{h=0}^{logn} h/2^{h+1} )
+    ### TC: O(n) O(n * \sum_{h=0}^{logn} n/2^{h+1} ) 完全二叉树每层n/2^{h+1}个节点
     def heapify(self): ### 对每层（从下往上）根节点做sift down (不用sift up是因为可以无视掉叶子点)
         leaf = len(self.heap) - 1
         parent = (leaf - 1) // 2
         if parent >= 0:
-            for i in range(parent, 0, -1):
+            for i in range(parent, 0, -1): ### halt of the nodes are parent
                 self.siftDown(i)
 
 

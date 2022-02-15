@@ -17,7 +17,7 @@ class Solution:
     def wordBreak(self, s, wordDict):
         wordDict = set(wordDict) ### key point (enable O(1) find operation)
         visited = [] ### key point
-        def DFS(idx):
+        def DFS(idx): ### idx is the current char location
             if idx in visited: ### key point: to avoid repeated recursion
                 return False
             if idx == len(s):

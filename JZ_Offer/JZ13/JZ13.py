@@ -52,7 +52,7 @@ class Solution:
                 stack.append((y,x+1))
                 visited.append((y,x+1))
 
-        return ans
+        return ans ### return len(visited)
 
 
 ### Recursive Solution
@@ -98,4 +98,4 @@ class Solution:
 
         self.visited.append((0,0))
         DFS((0,0))
-        return self.ans
+        return self.ans ### return len(self.visited)

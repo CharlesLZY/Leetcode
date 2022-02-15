@@ -13,7 +13,7 @@ JZ40 最小的K个数
 ### Intuitive solution: sort O(nlogn)
 
 from heapq import *
-### Heap Solution
+### Heap Solution: maintain a k-sized max heap
 ### TC: O(nlogk) (heap insert & pop operation is O(logk)) and SC: O(k)
 class MAX_Heap:
     heap = [] ### min heap
@@ -76,4 +76,31 @@ class Solution:
 
         return select(0, len(nums)-1)
 
+### Non-recursive version
+class Solution:
+    def GetLeastNumbers_Solution(self, nums, k):
+        def partition(low, high):
+            pivot = nums[high]
+            j = low
+            for i in range(low, high):
+                if nums[i] < pivot:
+                    nums[j], nums[i] = nums[i], nums[j] ### easy to make a mistake here
+                    j += 1
+            nums[j], nums[high] = nums[high], nums[j] 
+            return j
 
+        if k == 0: ### corner case
+            return []
+
+        lp = 0
+        rp = len(nums)-1
+        while lp < rp:
+            pivot_index = partition(lp, rp)
+            if pivot_index == k-1:
+                return nums[:k]
+            elif pivot_index < k-1:
+                lp = pivot_index + 1
+            else:
+                rp = pivot_index - 1
+
+        return nums[:k]

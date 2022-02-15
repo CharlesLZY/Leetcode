@@ -38,7 +38,7 @@ class Solution:
 
 class Solution:
     def exist(self, board, word):
-        n_row =len(board)
+        n_row = len(board)
         n_col = len(board[0])
         
         def backtrack(row, col, suffix):

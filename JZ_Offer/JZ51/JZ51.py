@@ -9,11 +9,14 @@ JZ51 数组中的逆序对
 # @param data List[int]
 # @return int
 
+'''
+把数逆序对和merge分开来，一方面为了可读性，一方面和LC493超级逆序对统一
+'''
 ### TC: O(nlogn) and SC: O(n)
 class Solution:
     count = 0
     def InversePairs(self, data):
-        temp = [None]*len(data)
+        temp = [None]*len(data) ### auxiliary array for merge sort
         self.count = 0
         def mergeSort(arr, temp, low, high): ### temp should be an array has the same length with arr
 

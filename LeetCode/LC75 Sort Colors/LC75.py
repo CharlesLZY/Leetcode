@@ -22,8 +22,8 @@ Iterate the array, if arr[i] == 0, swap with arr[lp], if arr[i] == 2, swap with 
 ### TC: O(n) and SC: O(1)
 class Solution:
     def sortColors(self, nums):
-        lp = 0
-        rp = len(nums)-1
+        lp = 0 ### last 0's index
+        rp = len(nums)-1 ### last 2's index
         cur = 0
         while cur <= rp: ### trick: cannot use for loop
             if nums[cur] == 0:
@@ -32,6 +32,6 @@ class Solution:
                 cur += 1
             elif nums[cur] == 2: ### trick: cur stays
                 nums[rp], nums[cur] = nums[cur], nums[rp]
-                rp -= 1
+                rp -= 1 ### cur stays because we have not checked the number swapped to cur
             else:
                 cur += 1

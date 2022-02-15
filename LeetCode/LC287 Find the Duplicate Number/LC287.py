@@ -14,7 +14,7 @@ You must solve the problem without modifying the array nums and uses only consta
 
 
 '''
-The tricky part of this problem is that all values are in the range [1, n], we can use them as index.
+Negative Mark
 '''
 ### TC: O(n) and SC: O(1)
 class Solution:

@@ -34,7 +34,7 @@ class Solution:
             if (y, x+1) not in visited and x+1 < w and matrix[y][x+1] == word[k]:
                 if DFS((y, x+1), k+1):
                     return True
-            visited.pop()
+            visited.pop() ### recursive version can do backtrack, stack version can not
             return False
 
         for i in range(h):

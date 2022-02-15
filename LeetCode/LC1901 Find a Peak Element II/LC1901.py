@@ -54,8 +54,8 @@ class Solution:
             return idx
 
         m, n = len(mat), len(mat[0])
-        lp = 0
-        rp = m-1
+        lp = 0 ### up pointer
+        rp = m-1 ### down pointer
         while lp < rp:
             mid = (lp + rp) // 2
             idx = findMAX(mat[mid])

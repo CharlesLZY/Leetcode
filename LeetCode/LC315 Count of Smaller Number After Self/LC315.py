@@ -94,3 +94,48 @@ class Solution:
                     p2 += 1
         mergeSort(arr)
         return ans
+
+
+class Solution:
+    def countSmaller(self, nums):
+        ans = len(nums) * [0]
+        arr = [(v, i) for i, v in enumerate(nums)]
+        temp = [(v, i) for i, v in enumerate(nums)] ### auxiliary array
+        def mergeSort(low, high):
+            if low < high:
+                mid = (low + high) // 2
+
+                mergeSort(low, mid)
+                mergeSort(mid+1, high)
+
+                p = low
+                q = mid+1
+                while p <= mid and q <= high:
+                    if arr[p][0] > arr[q][0]:
+                        for i in range(p, mid+1):
+                            ans[arr[i][1]] += 1
+                        q += 1
+                    else:
+                        p += 1
+
+                for i in range(low, high+1):
+                    temp[i] = arr[i] ### temporarily store the array for convenience to merge
+
+                p1 = low
+                p2 = mid + 1
+                for i in range(low, high+1):
+                    if p1 <= mid and p2 <= high:
+                        if temp[p1] <= temp[p2]:
+                            arr[i] = temp[p1]
+                            p1 += 1
+                        else:
+                            arr[i] = temp[p2]
+                            p2 += 1
+                    elif p1 <= mid:
+                        arr[i] = temp[p1]
+                        p1 += 1
+                    else:
+                        arr[i] = temp[p2]
+                        p2 += 1
+        mergeSort(0, len(arr)-1)
+        return ans

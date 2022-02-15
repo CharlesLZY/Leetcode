@@ -34,5 +34,3 @@ class Solution:
             canReach = max(nums[i]+i, canReach)
             if canReach >= len(nums)-1:
                 return True
-
-

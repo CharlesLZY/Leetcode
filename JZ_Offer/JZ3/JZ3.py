@@ -48,6 +48,7 @@ class Solution:
                     return numbers[i]
                 else:
                     numbers[numbers[i]], numbers[i] = numbers[i], numbers[numbers[i]] ### the order of the assignment statement cannot exchange
+                    ### i stays the same, because we do not check the number swap to here
         return -1 ### no duplicated number
 
 

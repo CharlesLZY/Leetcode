@@ -51,7 +51,7 @@ class Solution:
                         return True
                 return False
 
-        for count in range(1, n+1): ### at most n square number (all 1s)
+        for count in range(1, n+1): ### trick: at most n square number (all 1s)
             if DFS(n, count):
                 return count
 

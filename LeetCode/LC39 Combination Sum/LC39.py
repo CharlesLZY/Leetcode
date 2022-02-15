@@ -13,7 +13,7 @@ It is guaranteed that the number of unique combinations that sum up to target is
 '''
 
 '''
-Must all positive, if there is negative number nad the same number can be use for any times, this problem can not be solved.
+Must all positive, if there is negative number and the same number can be use for any times, this problem can not be solved.
 '''
 
 # @param candidates List[int] 
@@ -24,7 +24,7 @@ Must all positive, if there is negative number nad the same number can be use fo
 class Solution:
     def combinationSum(self, candidates, target):
         ans = []
-        candidates.sort() ### important: sort all numbers and incrementally build the combination
+        # candidates.sort() ### important: sort all numbers and incrementally build the combination
         def DFS(res, path, idx):
             if res == 0:
                 ans.append(path[:])
@@ -32,7 +32,8 @@ class Solution:
 
             for i in range(idx, len(candidates)):
                 if res - candidates[i] < 0:
-                    break ### other options are larger than current one
+                    # break ### other options are larger than current one
+                    continue
                 else:
                     path.append(candidates[i])
                     DFS(res-candidates[i], path, i)

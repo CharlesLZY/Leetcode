@@ -18,9 +18,13 @@ Output: 3
 # @param nums List[int]
 # @return int
 
+'''
+这题是Hard难度，因为可能的情况非常多，只通过遍历一遍找一个数提供的信息是不够的
+'''
+
 ### TC: O(n) and SC: O(1)
 class Solution:
-    def firstMissingPositive(self, nums: List[int]) -> int:
+    def firstMissingPositive(self, nums):
         i = 0
         while i < len(nums):
             cur = nums[i]
@@ -29,9 +33,17 @@ class Solution:
             else:
                 i += 1
         
-        curMAX = len(nums)+1 ### trick: default answer is len(nums)+1
-        for i in range(len(nums)):
-            if nums[i] != i+1:
+        curMAX = len(nums)+1 ### trick: default answer is len(nums)+1 因为最极端的情况每个index对应的数都有，那这时候最小的缺失正数就是n+1
+        for i in range(len(nums)): 
+            if nums[i] != i+1: ### 如果有index对应的正数没被标记，说明这个正数缺失的，但这题不能用negative mark因为数组中可能存在负数
                 curMAX = i+1
                 break
         return curMAX
+
+class Solution:
+    def firstMissingPositive(self, nums):
+        n = len(nums)
+        for i in range(1, n+1):
+            if i not in nums:
+                return i
+        return n+1

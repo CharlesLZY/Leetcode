@@ -14,8 +14,8 @@ A reverse pair is a pair (i, j) where 0 <= i < j < nums.length and nums[i] > 2 *
 class Solution:
     count = 0
     def reversePairs(self, data):
+        temp = [None]*len(data) ### auxiliary array for merge sort
         self.count = 0
-        temp = [None]*len(data)
         def mergeSort(arr, temp, low, high): ### temp should be an array has the same length with arr
 
             if low < high:

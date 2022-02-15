@@ -28,8 +28,30 @@ class Solution:
         inorder(root)
         return ans
 
-
 ### Stack Solution
+### TC: O(n) and SC: O(n)
+class Solution:
+    def inorderTraversal(self, root):
+        if root is None: ### corner case
+            return []
+        ans = []
+        stack = [root]
+        nextToVisit = root
+        while stack:
+            
+            while nextToVisit.left: 
+                stack.append(nextToVisit.left)
+                nextToVisit = nextToVisit.left
+
+            cur = stack.pop() ### before we visit the node, push all of its left child in the stack
+            ans.append(cur.val)
+
+            if cur.right:
+                stack.append(cur.right)
+                nextToVisit = cur.right ### the nextToVisit will only update if cur has right child
+        return ans
+
+### Another Stack Version
 ### TC: O(n) and SC: O(n)
 class Solution:
     def inorderTraversal(self, root):
@@ -58,3 +80,6 @@ class Solution:
                     ans.append(node.val)
                     stack.append(node.right)
         return ans
+
+
+

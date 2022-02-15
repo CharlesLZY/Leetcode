@@ -40,14 +40,14 @@ class Solution:
             return matrixT
 
 
-        def mirrot(matrix):
+        def mirror(matrix):
             n = len(matrix)
             for i in range(n):
                 for j in range(n // 2):
                     matrix[i][j], matrix[i][-j - 1] = matrix[i][-j - 1], matrix[i][j]
 
         matrix = transpose(matrix)
-        mirrot(matrix) # transpose then mirrot
+        mirror(matrix) # transpose then mirrot
 
 
 '''

@@ -43,7 +43,34 @@ class Solution:
 class Solution:
     def findUnsortedSubarray(self, nums):
         ### find the first unsorted number should be k-th smallest number
-        stack = [nums[0]] ### maintain an ascending stack
+        stack = [0] ### maintain an ascending stack
+        start = len(nums) ### k-th smallest number
+        for i in range(1, len(nums)):
+            while stack and nums[stack[-1]] > nums[i]:
+                start = min(start, stack.pop()) ### find the index of the unsorted number
+                '''
+                一直pop,直到回到它应该在的位置
+                '''
+            stack.append(i)
+
+        if start == len(nums): ### not found, the array is already sorted
+            return 0
+
+        ### find the last unsorted number should be k-th largest number
+        stack = [len(nums)-1] ### maintain an descending stack storing the index
+        end = 0
+        for i in range(len(nums)-2, -1, -1):
+            while stack and nums[stack[-1]] < nums[i]:
+                end = max(end, stack.pop()) ### find the index of the unsorted number
+            stack.append(i)
+                                
+        return end - start + 1 
+
+### Another version (awkward)
+class Solution:
+    def findUnsortedSubarray(self, nums):
+        ### find the first unsorted number should be k-th smallest number
+        stack = [nums[0]] ### maintain an ascending stack storing the numbers
         start = float("inf") ### k-th smallest number
         for i in range(1, len(nums)):
             if nums[i] >= nums[i-1]:
@@ -52,14 +79,14 @@ class Solution:
                 while stack and stack[-1] > nums[i]:
                     stack.pop()
                 stack.append(nums[i])
-                ### we need to find the smallest unsorted number
+                ### we need to find the smallest unsorted number's rank
                 start = min(start, len(stack)) ### trick: stack is ascending, so len(stack) is the ascending rank of the number in the array we have iterated so far
-
+                ### find
         if start == float("inf"): ### not found, the array is already sorted
             return 0
 
         ### find the last unsorted number should be k-th largest number
-        stack = [nums[-1]] ### maintain an descending stack
+        stack = [nums[-1]] ### maintain an descending stack storing the numbers
         end = float("inf")
         for i in range(len(nums)-2, -1, -1):
             if nums[i] <= nums[i+1]:
@@ -68,39 +95,11 @@ class Solution:
                 while stack and stack[-1] < nums[i]:
                     stack.pop()
                 stack.append(nums[i])
-                ### we need to find the largest unsorted number
+                ### we need to find the largest unsorted number's rank
                 end = min(end, len(stack)) ### trick: stack is descending, so len(stack) is the descending rank of the number in the array we have iterated so far
                 
         return len(nums) - start + 1 - end + 1
 
-class Solution:
-    def findUnsortedSubarray(self, nums):
-        ### find the first unsorted number should be k-th smallest number
-        stack = [0] ### maintain an ascending stack
-        start = len(nums) ### k-th smallest number
-        for i in range(1, len(nums)):
-            if nums[i] >= nums[i-1]:
-                stack.append(i)
-            else:
-                while stack and nums[stack[-1]] > nums[i]:
-                    start = min(start, stack.pop())
-                stack.append(i)
-
-        if start == len(nums): ### not found, the array is already sorted
-            return 0
-
-        ### find the last unsorted number should be k-th largest number
-        stack = [len(nums)-1] ### maintain an descending stack
-        end = 0
-        for i in range(len(nums)-2, -1, -1):
-            if nums[i] <= nums[i+1]:
-                stack.append(i)
-            else:
-                while stack and nums[stack[-1]] < nums[i]:
-                    end = max(end, stack.pop())
-                stack.append(i)
-                                
-        return end - start + 1
 
 '''
 The last number which doesn't update curMAX from left to right must be the end position of unsorted numbers.
