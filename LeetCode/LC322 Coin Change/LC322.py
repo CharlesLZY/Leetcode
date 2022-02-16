@@ -51,14 +51,14 @@ class Solution:
             candidates = []
             for c in coins:
                 if i - c < 0:
-                    candidates.append(float("inf"))
+                    continue
                 else:
                     candidates.append(DP_table[i-c])
             DP_table[i] = min(candidates) + 1
         return DP_table[-1] if DP_table[amount] != float("inf") else -1
 
 
-### Greedy Solution
+### Greedy Solution (类似LC279, 先把上界划出来，然后一个一个试，期望上能减小运算量)
 class Solution:
     def coinChange(self, coins, amount):
         def DFS(res, count):
@@ -75,8 +75,8 @@ class Solution:
                         if DFS(res-c, count-1):
                             return True
                 return False
-        lb = amount // max(coins)
-        hb = amount // min(coins) + 1
+        lb = amount // max(coins) ### 最少这么多张
+        hb = amount // min(coins) + 1 ### 最多这么多张
         for i in range(lb, hb):
             if DFS(amount, i):
                 return i

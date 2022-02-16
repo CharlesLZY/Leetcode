@@ -19,7 +19,7 @@ class Solution:
         for i in range(1, len(nums)):
             for j in range(i):
                 if nums[i] > nums[j]:
-                    DP_table[i] = max(DP_table[i], DP_table[j]+1) ### DP[i] = max(DP[j]) + 1 where 0 <= j < i
+                    DP_table[i] = max(DP_table[i], DP_table[j]+1) ### DP[i] = max(DP[j]) + 1 where 0 <= j < i and nums[i] > nums[j]
         return max(DP_table)
 
 
@@ -39,6 +39,6 @@ class Solution:
             else:
                 for i in range(len(stack)):  ### can be optimized to binary search to find the first larger number
                     if stack[i] >= num:
-                        stack[i] = num
+                        stack[i] = num ### 太tricky了
                         break
         return len(stack)

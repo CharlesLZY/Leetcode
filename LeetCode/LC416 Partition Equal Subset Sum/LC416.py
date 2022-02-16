@@ -50,7 +50,7 @@ class Solution:
         DP_table = {} ### { (curIdx, curSum) : whether the remaining numbers in the array can achieve the target }
         def DFS(idx, res):
             if idx == len(nums):
-                return True if res == target else False ### this line can acelerate 30%
+                return True if res == target else False
             if (idx, res) in DP_table:
                 return DP_table[(idx, res)]
 

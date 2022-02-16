@@ -27,12 +27,11 @@ class Solution:
 ### Optimized Solution
 class Solution:
     def countPrimes(self, n):
-        if n <= 2:
-            return 0
         primes = [False, False] + [True] * (n - 2)
         for p in range(2, int(sqrt(n)) + 1): ### trick: to save time complexity
             if primes[p]:
-                for multiple in range(p * p, n, p): ### set all multiples of p to False
+                # for multiple in range(p * 2, n, p): ### set all multiples of p to False
+                for multiple in range(p * p, n, p): ### can start from p*p because p * k where k < p has been checked
                     primes[multiple] = False
         
         return sum(primes) ### the remaining true is primes

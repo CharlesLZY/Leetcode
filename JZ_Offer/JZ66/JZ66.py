@@ -36,7 +36,7 @@ We can use array B as left/right array temporarily and track right[i]/left[i] ea
 ### TC: O(n) and SC: O(1)
 class Solution:
     def multiply(self, A):
-        B  = [1]*len(A) ### no use of extra space complexity
+        B  = [1]*len(A) ### no use of extra space complexity, B is what we want to reture
         for i in range(1, len(A)):
             B[i] = B[i-1]*A[i-1] ### left array
         rp = 1
@@ -48,7 +48,7 @@ class Solution:
 ### TC: O(n) and SC: O(1)
 class Solution:
     def multiply(self, A):
-        B  = [1]*len(A) ### no use of extra space complexity
+        B  = [1]*len(A) ### no use of extra space complexity, B is what we want to reture
         for i in range(len(A)-2, -1, -1):
             B[i] = B[i+1]*A[i+1] ### right array
         lp = 1

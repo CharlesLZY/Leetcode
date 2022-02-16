@@ -66,13 +66,13 @@ class Solution:
 ### TC: O(n^2) and SC: O(n^2)
 class Solution:
     def longestPalindrome(self, s):
-        DP_table = [[None for i in range(len(s))] for _ in range(len(s))]
+        DP_table = [[None for i in range(len(s))] for _ in range(len(s))] ### DP[i][j] means whether s[i:j] is palindrome
         max_length = 1
         index = 0
-        for i in range(len(s)):
+        for i in range(len(s)): ### for single char
             DP_table[i][i] = True
         for i in range(len(s)-1):
-            DP_table[i][i+1] = s[i]==s[i+1]
+            DP_table[i][i+1] = s[i]==s[i+1] ### AA type
             if s[i]==s[i+1]:
                 max_length = 2
                 index = i
@@ -99,4 +99,45 @@ class Solution:
                     max_length = i+3
                     index = j
 
+        return s[index:index+max_length]
+
+
+### Another Version
+class Solution:
+    def longestPalindrome(self, s):
+        DP_table = [[None for i in range(len(s))] for _ in range(len(s))] ### DP[i][j] means whether s[i:j] is palindrome
+        max_length = 1
+        index = 0
+        for i in range(len(s)): ### for single char
+            DP_table[i][i] = True
+        for i in range(len(s)-1):
+            DP_table[i][i+1] = s[i]==s[i+1] ### AA type
+            if s[i]==s[i+1]:
+                max_length = 2
+                index = i
+
+
+        '''
+            a b c b a a b
+            0 1 2 3 4 5 6 
+        0   T F
+        1     T F
+        2       T F
+        3         T F
+        4           T T
+        5             T F
+        6               T
+
+        '''
+
+        ### filling the DP table along the diagonal
+        for i in range(len(s)-2, -1, -1): ### trick: must be in reverse order (因为会用到下面一行的信息)
+            for j in range(2+i, len(s)):
+               
+                DP_table[i][j] = DP_table[i+1][j-1] and s[i]==s[j] ### use the information of row i+1, so we need to update DP table from bottom to top
+                
+                if DP_table[i][j] and j-i+1 > max_length:
+                    max_length = j-i+1
+                    index = i
+        
         return s[index:index+max_length]

@@ -25,14 +25,14 @@ class Solution:
     def maxProfit(self, prices):
         MAX = 0
         leftMin = prices[0]
-        leftProfits = [0] * len(prices) ### DP = 
-        for lp in range(1, len(prices)): 
+        leftProfits = [0] * len(prices) ### DP[i] means the max profit if sell the stock at i
+        for lp in range(1, len(prices)): ### 正着走,对于每个时间点,找之前的最低价
             leftProfits[lp] = max(leftProfits[lp-1], prices[lp] - leftMin)
             leftMin = min(leftMin, prices[lp])
 
         rightMax = prices[-1]
-        rightProfits = [0] * len(prices)
-        for rp in range(len(prices)-2, -1, -1):  ### rp go through the prices in reverse 
+        rightProfits = [0] * len(prices) ### DP[i] means the max profit we can have if we can choose to buy a stock at i or later
+        for rp in range(len(prices)-2, -1, -1):  ### 倒着走, 每个时间点更新最高价, 用现在的价格减最高价
             rightProfits[rp] = max(rightProfits[rp+1], rightMax - prices[rp])
             rightMax = max(rightMax, prices[rp])
 

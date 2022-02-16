@@ -18,8 +18,6 @@ Difference between two kinds of sub-structure overlapping method
 2. DP[i] = max(DP[i+1], DP[i+2]+nums[i]) where DP[i] starting from robbing i 
 '''
 
-### 4 1 2 3
-
 ### Recursion DP Solution (recursion with memoization)
 class Solution:
     def rob(self, nums):
@@ -47,8 +45,8 @@ class Solution:
             return DP_table[i]
         return robFrom(len(nums)-1)
 
-
-### DP Solution
+### 2. DP[i] = max(DP[i+1], DP[i+2]+nums[i]) where DP[i] starting from robbing i 
+### DP Solution 
 ### TC: O(n) and SC: O(n)
 class Solution:
     def rob(self, nums):
@@ -56,6 +54,16 @@ class Solution:
         for i in range(len(nums)-1, -1, -1):
             DP_table[i] = max(DP_table[i+1], DP_table[i+2]+nums[i])
         return DP_table[0]
+
+### 1. DP[i] = max(DP[i-1], DP[i-2]+nums[i]) where DP[i] ending at robbing i 
+### Another Version
+class Solution:
+    def rob(self, nums):
+        DP_table = [0]*(len(nums)+1)
+        DP_table[1] = nums[0]
+        for i in range(2, len(nums)+1):
+            DP_table[i] = max(DP_table[i-2]+nums[i-1], DP_table[i-1])
+        return DP_table[len(nums)]
 
 
 ### Optimized DP Solution

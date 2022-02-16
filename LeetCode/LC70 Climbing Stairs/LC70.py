@@ -20,7 +20,7 @@ class Solution:
         DP_table[1] = 2
         for i in range(2, n):
             DP_table[i] = DP_table[i-1] + DP_table[i-2]
-        return DP_table[n-1]
+        return DP_table[-1]
 
 ### DP Space Complexity Optimized Solution
 ### TC: O(n) and SC: O(1)

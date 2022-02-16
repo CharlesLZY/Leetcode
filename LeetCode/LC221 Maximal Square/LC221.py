@@ -20,7 +20,7 @@ class Solution:
         m, n = len(matrix), len(matrix[0])
         for i in range(m):
             for j in range(n):
-                if matrix[i][j] == '0': ### current number will be use as the right-bottom corner
+                if matrix[i][j] == '0': ### matrix[i][j] will be use as the right-bottom corner
                     continue
                 for k in range(min(i,j)+1):
                     dx, dy = i-k, j-k ### left-up corner

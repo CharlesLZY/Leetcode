@@ -20,7 +20,7 @@ Therefore, the problem becomes to rob either House[1]-House[n-1] or House[2]-Hou
 depending on which choice offers more money. Now the problem has degenerated to the House Robber, which is already been solved.
 '''
 
-### TC: O(n) and SC: O(n)
+### TC: O(n) and SC: O(1)
 class Solution:
     def rob(self, nums):
         if len(nums) == 1:   ### corner case

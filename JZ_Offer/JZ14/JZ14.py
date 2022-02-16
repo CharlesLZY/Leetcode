@@ -14,17 +14,17 @@ JZ14 剪绳子
 ### TC: O(n^2) and SC: O(n)
 class Solution:
     DP_table = [0] * 60
-    def cutRope(self, number):
+    def cutRope(self, number): ###  return DP[n], if DP[n] is empty, it will update DP[n]
         if number <= 2:
             return 1
-        if self.DP_table[number] > 0:
+        if self.DP_table[number] > 0: ### DP[n] has been calculated
             return self.DP_table[number]
         else:
             MAX = 0
             for i in range(1, number): ### how long can one cut be (1 <= cut < number)
                 MAX = max(MAX, i * max(self.cutRope(number-i), number-i)) ### trick: i * max(self.cutRope(number-i), number-i)
                 ### cutRope(n) will return DP[n], if DP[n] is empty, it will calculate DP[n]
-                ### DP[n] at least cut one time, so we need max(cutRope(number-i), number-i). number - i means no cut
+                ### DP[n] at least cut one time, so we need i * max(cutRope(number-i), number-i). number - i means no cut
             self.DP_table[number] = MAX
             return MAX
 
