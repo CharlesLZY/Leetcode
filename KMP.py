@@ -91,7 +91,7 @@ def patternSearch(string, pattern):
     def generateNextArray():
         nextArray = [0] * len(pattern)
         i = 0 ### backtrack pointer for pattern
-        j = 1
+        j = 1 ### start from the second number
         while j < len(pattern):
             if pattern[j] == pattern[i]:
                 nextArray[j] = i + 1
