@@ -39,15 +39,21 @@ class Solution:
         ans = 0
         for i in range(len(s)): ### .. b a a b ..
             r = 0
-            while i-r >= 0 and i+r+2 <= len(s) and checkPalindrome(s[i-r:i+r+2]):
-                ans += 1
-                r += 1
+            while i-r >= 0 and i+r+2 <= len(s):
+                if s[i-r] == s[i+r+1]:
+                    ans += 1
+                    r += 1
+                else:
+                    break
 
         for i in range(len(s)): ### .. b a b ..
             r = 0
-            while i-r >= 0 and i+r+1 <= len(s) and checkPalindrome(s[i-r:i+r+1]):
-                ans += 1
-                r += 1
+            while i-r >= 0 and i+r+1 <= len(s):
+                if s[i-r] == s[i+r]:
+                    ans += 1
+                    r += 1
+                else:
+                    break
 
         return ans
 

@@ -35,10 +35,10 @@ class Solution:
             return 0
 
 
+### Elegent Solution
 class Solution:
     def GetNumberOfK(self , data, k):
-        # write code here
-        def search(n):
+        def search(n): ### we want to find the position before n
             lp = 0
             rp = len(data) - 1
             while lp <= rp:
@@ -48,7 +48,7 @@ class Solution:
                 elif data[mid] < n:
                     lp = mid + 1
                 elif data[mid] == n:
-                    rp = mid - 1
+                    rp = mid - 1 ### trick: rp can be -1
             return min(lp,rp)
         
         

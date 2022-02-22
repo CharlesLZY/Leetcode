@@ -61,7 +61,7 @@ class Solution:
             if q[0] not in graph or q[1] not in graph: ### corner case
                 ans.append(-1.0)
             else:
-                ans.append(findPath(q[0], q[1], 1, [])) 
+                ans.append(findPath(q[0], q[1], 1, [])) ### each time we change the start node, we need to have a new visited list to start a new round graph search
         return ans
 
 

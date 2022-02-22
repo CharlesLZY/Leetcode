@@ -82,3 +82,27 @@ class Solution:
         else:
             return [lp, rp]
 
+### Another Solution
+### TC: O(logn) and SC: O(1)
+class Solution:
+    def searchRange(self, nums, target):
+        def search(n): ### we want to find the position before n
+            lp = 0
+            rp = len(nums) - 1
+            while lp <= rp:
+                mid = (lp + rp) // 2
+                if nums[mid] > n:
+                    rp = mid - 1
+                elif nums[mid] < n:
+                    lp = mid + 1
+                elif nums[mid] == n:
+                    rp = mid - 1 ### trick: rp can be -1
+            return min(lp,rp)
+        
+        lp = search(target)
+        rp = search(target+1)
+        
+        if rp <= lp: ### not found
+            return [-1,-1]
+        
+        return [lp+1, rp]

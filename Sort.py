@@ -78,7 +78,6 @@ def mergeSort(arr, aux, low, high): ### temp should be an array has the same len
         mid = (low + high) // 2
         p1 = low
         p2 = mid+1
-        i = low
         for i in range(low, high+1):
             if p1 <= mid and p2 <= high:
                 if aux[p1] < aux[p2]:

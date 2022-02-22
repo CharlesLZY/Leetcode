@@ -13,12 +13,12 @@ The counts array has the property where counts[i] is the number of smaller eleme
 nums = [6,5,2,5,3,8,1]
 
         1
-       / \
-      2   8
+         \
+          8
          /
         3
-         \
-          5
+       / \
+      2   5
          / \
         5   6
 
@@ -44,7 +44,7 @@ class Solution:
                 else: ### after each node is set, the ans[i] will never change
                     root.left = TreeNode(val) ### nums[:i] will not affect ans[i]
             elif val > root.val:
-                ans[i] += root.count + 1
+                ans[i] += root.count + 1 ### root's left child + root itself
                 if root.right:
                     insertNode(root.right, val, i)
                 else: ### after each node is set, the ans[i] will never change

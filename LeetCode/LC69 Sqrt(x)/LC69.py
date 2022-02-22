@@ -65,7 +65,7 @@ class Solution:
     def mySqrt(x):  
         def f(z):  ### f(z) = (z^2 - x)^2
             return (z*z - x) * (z*z - x)
-        def df(z): ### derivate of f(z) = z^2 - x
+        def df(z): ### derivate of f(z) = (z^2 - x)^2
             return 4*z*z*z - 2*x*2*z
 
         threshold = 1e-5

@@ -48,15 +48,21 @@ class Solution:
         r = 0 ### shared radius, the longest substring must beat the former one
         for i in range(len(s)): ### .. b a a b ..
             while i-r >= 0 and i+r+2 <= len(s) and checkPalindrome(s[i-r:i+r+2]):
-                if len(s[i-r:i+r+2]) > len(res):
-                    res = s[i-r:i+r+2]
-                r += 1
+                if s[i-r] == s[i+r+1]:
+                    if 2*r+2 > len(res):
+                        res = s[i-r:i+r+2]
+                    r += 1
+                else:
+                    break
 
         for i in range(len(s)): ### .. b a b ..
             while i-r >= 0 and i+r+1 <= len(s) and checkPalindrome(s[i-r:i+r+1]):
-                if len(s[i-r:i+r+1]) > len(res):
-                    res = s[i-r:i+r+1]
-                r += 1
+                if s[i-r] == s[i+r]:
+                    if 2*r+1 > len(res):
+                        res = s[i-r:i+r+1]
+                    r += 1
+                else:
+                    break
 
         return res
 

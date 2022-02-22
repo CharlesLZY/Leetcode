@@ -38,6 +38,6 @@ class Solution:
         for i in range(len(nums)-1, 0, -1): ### rob nums[1]
             cur = max(prev1, prev2+nums[i])
             prev1, prev2 = cur, prev1
-        c2 = cur
+        c2 = cur ### choice 2
 
         return max(c1,c2)

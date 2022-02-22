@@ -8,7 +8,7 @@ Given a string s, find the length of the longest substring without repeating cha
 # @param s str 
 # @return int
 
-### Sliding window solution
+### Sliding Wwindow Solution
 ### TC: O(n) and SC: O(n)
 class Solution:
     def lengthOfLongestSubstring(self, s):

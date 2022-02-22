@@ -61,7 +61,7 @@ class Solution:
         freqs = Counter(tasks)
         maxHeap = MAX_Heap([val for val in freqs.values()]) ### maintain a max heap to get the current most hurried task
         time = 0
-        while len(maxHeap) > 0:
+        while len(maxHeap) > 0: ### maxHeap works as the remaining task to finish
             ### the slot is composed of the most hurried tasks (task which has the most time to be done) 
             ### and other less hurried tasks to fill the cooldown period 
             slot = [] 

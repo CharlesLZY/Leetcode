@@ -26,19 +26,19 @@ class Solution:
         visited = [False] * numCourses
         lookup = [False] * numCourses ### trick: temporarily look-up record to decide whether there is cycle in this round
 
-        def DFS(course): ### find cycle
+        def findCycle(course): ### find cycle
             visited[course] = True
             lookup[course] = True
             for neighbour in adjMatrix[course]:
                 if lookup[neighbour]: ### cyclic
                     return True
                 elif not visited[neighbour]: ### trick: avoid repeated checks
-                    if DFS(neighbour):
+                    if findCycle(neighbour):
                         return True
             lookup[course] = False ### reset, only being used for this round of cycle checking
             return False
 
         for course in range(numCourses):
-            if not visited[course] and DFS(course): ### DFS(course) equals to select the course first
+            if not visited[course] and findCycle(course): ### findCycle(course) equals to select the course first, check whether course itself has any prerequisite pointing to it
                 return False
         return True

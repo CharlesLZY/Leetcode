@@ -16,6 +16,7 @@ inorder is the inorder traversal of the same tree, construct and return the bina
 # @param inorder List[int]
 # @return TreeNode
 
+### Recursive Solution
 ### TC: O(n) and SC: O(n)
 class Solution:
     def buildTree(self, preorder, inorder):
@@ -27,3 +28,4 @@ class Solution:
             return root
         else:
             return None
+

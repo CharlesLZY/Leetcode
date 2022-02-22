@@ -35,15 +35,15 @@ class Solution:
 class Solution:
     def rob(self, nums):
         DP_table = [None]*(len(nums))
-        def robFrom(i):
+        def robEndAt(i):
             if i < 0:
                 return 0
             if DP_table[i] is not None:
                 return DP_table[i]
 
-            DP_table[i] = max(robFrom(i-1), robFrom(i-2)+nums[i])
+            DP_table[i] = max(robEndAt(i-1), robEndAt(i-2)+nums[i])
             return DP_table[i]
-        return robFrom(len(nums)-1)
+        return robEndAt(len(nums)-1)
 
 ### 2. DP[i] = max(DP[i+1], DP[i+2]+nums[i]) where DP[i] starting from robbing i 
 ### DP Solution 
