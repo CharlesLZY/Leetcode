@@ -37,7 +37,7 @@ class Solution:
             if num > stack[-1]:
                 stack.append(num)
             else:
-                for i in range(len(stack)):  ### can be optimized to binary search to find the first larger number
+                for i in range(len(stack)): ### can be optimized to binary search to find the first larger number
                     if stack[i] >= num:
                         stack[i] = num ### 太tricky了
                         break

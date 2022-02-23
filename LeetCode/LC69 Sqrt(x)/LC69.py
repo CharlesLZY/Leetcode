@@ -62,7 +62,7 @@ class Solution:
 
 ### Gradient Descent
 class Solution:
-    def mySqrt(x):  
+    def mySqrt(self, x):  
         def f(z):  ### f(z) = (z^2 - x)^2
             return (z*z - x) * (z*z - x)
         def df(z): ### derivate of f(z) = (z^2 - x)^2
@@ -75,3 +75,34 @@ class Solution:
             x_n = x_n - alpha * df(x_n)
             print(x_n)
         return x_n
+
+
+'''
+Nsqrt(k) = x, we want to find the solution of f(x) = x^N - k = 0
+Use Taylor expansion: f(x) = f(x_0) + f'(x_0)(x-x_0)^1/1! + ...
+f(x_0) + f'(x_0)(x-x_0) = 0
+x_1 = x_0 - f(x_0)/f'(x_0)
+...
+x_n+1 = x_n - f(x_n)/f'(x_n)
+
+'''
+### Newton's Method
+### TC: O(logn) and SC: O(1)
+class Solution:
+    def mySqrt(self, x, n):
+        def f(z):  ### f(z) = z^n - x
+            return z**n - x
+
+        def df(z): ### derivate of f(z) = z^n - x
+            return n*pow(z,n-1)
+
+        threshold = 1e-5
+
+        x_n = x // n
+        while abs(f(x_n)) > threshold:
+            x_n = x_n - f(x_n) / df(x_n)
+
+        return x_n
+
+
+### x^(1/n) = exp(ln(x)/n)

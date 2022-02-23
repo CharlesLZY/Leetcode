@@ -97,7 +97,8 @@ class Solution:
                     lp = mid + 1
                 elif nums[mid] == n:
                     rp = mid - 1 ### trick: rp can be -1
-            return min(lp,rp)
+            # return min(lp,rp)
+            return rp ### find first number less than n
         
         lp = search(target)
         rp = search(target+1)
