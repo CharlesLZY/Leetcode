@@ -39,12 +39,11 @@ When two nodes have the same freq, we need to perform LRU rule.
 So we can maintain some freq lists (at most C freq lists) to store nodes with the same freq.
 Use double linked list to achieve LRU cache. Check the freq list have the highest freq to achieve LFU.
 
-
 Hash Table: {key : DLinkedNode}
 freq Table: {freq: DlinkedList}
 '''
 ### Hash Table + Double Linked Lists
-### TC: O(1) SC: O(C^2) where C is the capacity of the cache
+### TC: O(1) SC: O(C) where C is the capacity of the cache
 class DLinkedNode: 
     def __init__(self, key=None, value=None):
         self.key = key

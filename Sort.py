@@ -184,3 +184,6 @@ def heapSort(array):
         sortedArr.append(heap.pop())
     return sortedArr
     
+
+### Bucket Sort (need extra information)
+### TC: O(nlog(n/k)) and SC: O(n) sorting k sublist needs k * n/k log(n/k) = nlog(n/k)

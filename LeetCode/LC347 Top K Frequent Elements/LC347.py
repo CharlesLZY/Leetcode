@@ -66,7 +66,38 @@ class Solution:
         return arr[len(arr)-k:]
 
 
-
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        from collections import Counter
+        count = Counter(nums)
+        arr = list(count.keys())
+        
+        if len(arr) < k:
+            return arr
+        
+        def partition(arr, low, high):
+            if low < high:
+                pivot = arr[high]
+                j = low
+                for i in range(low, high):
+                    if count[arr[i]] < count[pivot]:
+                        arr[i], arr[j] = arr[j], arr[i]
+                        j += 1
+                
+                arr[high], arr[j] = arr[j], arr[high]
+                return j
+            return low
+        
+        lp = 0
+        rp = len(arr) - 1
+        while lp <= rp:
+            pivotIdx = partition(arr, lp, rp)    
+            if pivotIdx == len(arr) - k:
+                return arr[pivotIdx:]
+            elif pivotIdx < len(arr) - k:
+                lp = pivotIdx + 1
+            else:
+                rp = pivotIdx - 1
 
 
 '''

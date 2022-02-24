@@ -41,8 +41,10 @@ class Solution:
                 if match(s_i, p_j+2): ### if we skip this _*, the string can be matched
                     return True
                 else: ### if skip current _* pattern will not lead to a successful match, then we have to match it
+                    ### trick: important to check whether s has run out
                     if s_i == len(s): ### s is run out, but skiping current _* will not give a successful match, then failed
-                        return False
+                        ### example case: s = abc p = .*c                              
+                        return False ### in this case p has not run out
                     else:
                         if (p[p_j] == "." or s[s_i] == p[p_j]): ### arbitrary entry .* or _ matched with _*
                             return match(s_i+1, p_j) ### p_j stays, because next turn will keep trying to skip current _*
@@ -50,8 +52,9 @@ class Solution:
                             return False
                         
             else: ### without * postfix, the pattern can not be skiped and must be matched
-                ### 
+                ### trick: important to check whether s has run out
                 if s_i == len(s): ### s is run out, p still has remains
+                    ### example case: s = abc p = .*c  
                     return False
                 else:
                     if (p[p_j] == "." or s[s_i] == p[p_j]): ### arbitrary entry . or _ matched with _

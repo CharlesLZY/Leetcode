@@ -45,17 +45,20 @@ class LRUCache:
 
         self.cache = {}
 
-    def _moveToHead(self, node):
+    ### TC: O(1)
+    def _moveToHead(self, node): 
         node.next.prev, node.prev.next = node.prev, node.next ### cut from the original position
         node.prev, node.next = self.head, self.head.next ### insert
         self.head.next.prev = node ### link
         self.head.next = node ### link
 
+    ### TC: O(1)
     def _addToHead(self, node):
         node.prev, node.next = self.head, self.head.next ### insert
         self.head.next.prev = node ### link
         self.head.next = node ### link
 
+    ### TC: O(1)
     def _delete(self):
         node = self.tail.prev
         self.tail.prev = node.prev
@@ -63,6 +66,7 @@ class LRUCache:
         node.prev, node.next = None, None ### C/C++ style
         del self.cache[node.key]
 
+    ### TC: O(1)
     def get(self, key):
         if key in self.cache:
             node = self.cache[key]
@@ -70,7 +74,8 @@ class LRUCache:
             return node.val
         else:
             return -1
-        
+    
+    ### TC: O(1)
     def put(self, key, value):
         if key in self.cache:  ### important
             node = self.cache[key]
