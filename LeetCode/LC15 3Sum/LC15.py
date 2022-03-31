@@ -32,7 +32,7 @@ class Solution:
             while lp < rp:
                 temp = nums[lp] + nums[rp]
                 if temp == target:
-                    result.append([pivot, nums[lp], nums[rp]])
+                    ans.append([pivot, nums[lp], nums[rp]])
                     lp += 1
                     ### Key point: skip duplicate nums[lp] 
                     while nums[lp] == nums[lp-1] and lp < rp: ### 3 sum has the property that two numbers are settled, the third one is fixed
@@ -42,3 +42,6 @@ class Solution:
                     lp += 1
                 else:
                     rp -= 1
+        return ans
+
+        
