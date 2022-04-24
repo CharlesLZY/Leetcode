@@ -19,7 +19,6 @@ class Solution:
         nums.sort() ### TC O(nlogn) will not affect the whole time complexity
 
         ### Since the array is sorted, we can use two pointers and convert the problem into two sum problem
-
         for i in range(len(nums)):
             if i>0 and nums[i] == nums[i-1]: ### Important: skip the duplicate target
                 continue

@@ -1,3 +1,4 @@
+
 def searchFirstGreaterThan(arr, idx): ### find first number greater than idx
     lp = 0
     rp = len(arr)-1
