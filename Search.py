@@ -1,31 +1,52 @@
+def searchLastSmallerThan(arr, target): ### find the last number smaller than target
+    lp = 0
+    rp = len(arr)-1
+    while lp < rp:
+        mid = (lp + rp) // 2 + 1 ### trick: ensure that mid > lp
+        if arr[mid] < target:
+            lp = mid ### trick: mid must be bigger than lp
+        else:
+            rp = mid - 1
+    return rp if arr[rp] < n else -1
 
-def searchFirstGreaterThan(arr, idx): ### find first number greater than idx
+def searchFirstGreaterThan(arr, target): ### find the last number Greater than target
+    lp = 0
+    rp = len(arr)-1
+    while lp < rp:
+        mid = (lp + rp) // 2 ### trick: ensure that mid < rp
+        if arr[mid] > target:
+            rp = mid ### trick: mid must be smaller than lp
+        else:
+            lp = mid + 1
+    return rp if arr[rp] < n else -1
+
+def searchFirstGEThan(arr, target): ### find the first number greater than or equal target
     lp = 0
     rp = len(arr)-1
     while lp <= rp:
         mid = (lp + rp) // 2
-        if arr[mid] > idx: ### trick
+        if arr[mid] > target: ### trick
             rp = mid - 1
-        elif arr[mid] < idx:
+        elif arr[mid] < target:
             lp = mid + 1
         else:
             return mid
     ### return lp 因为lp可以被+到len(arr)
-    return lp ### arr[:lp] <= idx, if idx > max(arr) return len(arr)
+    return lp ### arr[:lp] <= target, if target > max(arr) return len(arr)
 
-def searchFirstLessThan(arr, idx): ### find first number less than idx
+def searchFirstLEThan(arr, target): ### find the first number less  than or equal target
     lp = 0
     rp = len(arr)-1
     while lp <= rp:
         mid = (lp + rp) // 2
-        if arr[mid] > idx:
+        if arr[mid] > target:
             rp = mid - 1
-        elif arr[mid] < idx:
+        elif arr[mid] < target:
             lp = mid + 1
         else:
             return mid
     ### return rp 因为rp可以被-到len(arr)
-    return rp ### arr[lp:] >= idx, if idx > max(arr) return len(arr)
+    return rp ### arr[lp:] >= target, if target > max(arr) return len(arr)
 
 import random
 def QuickSelect(arr, k):  ### quick select k-th largest

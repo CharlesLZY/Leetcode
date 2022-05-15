@@ -45,13 +45,46 @@ class Solution:
             if l:
                 frontier.append((l.val, l))
         while frontier:
-            frontier.sort(key = lambda x: x[0])
+            frontier.sort(key = lambda x: x[0]) ### can use heap to optimize
             val, node = frontier.pop(0)
             cur.next = ListNode(val)
             cur = cur.next
             if node.next:
                 frontier.append((node.next.val, node.next))
         return temp.next
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+        
+    ### Only __lt__ is needed by Python for sorting
+    ### if we want to use heap for some objects that do not support to compare
+    ### we can re-implement __lt__
+    def __lt__(self, other):
+        return self.val < other.val
+
+### Heap Solution
+### TC: O(nlogn) and SC: O(1)
+from queue import PriorityQueue
+class Solution:
+    def mergeKLists(self, lists):
+        frontier = PriorityQueue()
+        for l in lists:
+            if l:
+                frontier.put(l)
+        temp = ListNode()
+        cur = temp
+
+        while not frontier.empty():
+            node = frontier.get()
+            cur.next = node
+            cur = cur.next
+            node = node.next
+            if node:
+                frontier.put(node)
+        return temp.next
+
 
 ### Intuitive Sort Solution
 ### TC: O(nlogn) and SC: O(n)
@@ -68,3 +101,12 @@ class Solution:
             cur.next = ListNode(x)
             cur = cur.next
         return temp.next
+
+
+
+
+
+
+
+
+

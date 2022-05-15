@@ -21,10 +21,10 @@ return true if there exist two elements in the BST such that their sum is equal 
 class Solution:
     def findTarget(self, root, k):
         hashSet = set()
-        queue = [root]
+        queue = [root] ### BFS
         while queue:
             node = queue.pop(0)
-            if k - node.val in hashTable:
+            if k - node.val in hashSet:
                 return True
             hashSet.add(node.val)
             if node.left:

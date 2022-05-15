@@ -33,11 +33,19 @@ class Solution:
                     if temp == target:
                         ans.append([nums[lp], nums[rp]])
                         ### important: skip all repeated numbers
-                        while lp+1 < len(nums) and nums[lp] == nums[lp+1]:
-                            lp += 1
-                        while rp-1 >= 0 and nums[rp] == nums[rp-1]:
-                            rp -= 1
                         lp += 1
+                        while nums[lp] == nums[lp-1] and lp < rp:
+                            lp += 1
+                        # while rp-1 >= 0 and nums[rp] == nums[rp-1]: ### not necessary, because lp will skip the duplicate value, rp will move on naturally
+                        #     rp -= 1
+
+                        ''' 
+                        ### Another version
+                        while lp < rp and nums[lp] == nums[lp+1]:
+                            lp += 1
+                        lp += 1
+                        '''
+                        
 
                     elif temp < target:
                         lp += 1
@@ -51,7 +59,8 @@ class Solution:
                 return twoSum(start, target)
             else:
                 for i in range(start, len(nums)-k+1):
-                    if i-1 >= start and nums[i] == nums[i-1]: ### trick: use the first one and skip the following numbers so that we can still use multiple same numbers
+                    ### important: i > start
+                    if i > start and nums[i] == nums[i-1]: ### trick: use the first one and skip the following numbers so that we can still use multiple same numbers
                         continue ### skip repeated numbers
 
                     for subset in kSum(i+1, target-nums[i], k-1):
@@ -59,6 +68,8 @@ class Solution:
                         ans.append([nums[i]] + subset)
 
             return ans
+
+        ### sort the array first
         nums.sort()
         return kSum(0, target, 4)
 

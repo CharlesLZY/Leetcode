@@ -24,3 +24,20 @@ class Solution:
         forward([None for _ in range(2*n)], 0, 0)
         return ans
 
+### another version
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        ans = []
+        def forward(path, n_lp, n_rp):
+            if n_lp == 0 and n_rp == 0:
+                ans.append(''.join(path))
+                return
+            else:
+                if n_lp < n_rp:
+                    path[2*n-n_lp-n_rp] = ')'
+                    forward(path, n_lp, n_rp-1)
+                if n_lp > 0:
+                    path[2*n-n_lp-n_rp] = '('
+                    forward(path, n_lp-1, n_rp)
+        forward([None for _ in range(2*n)], n, n)
+        return ans

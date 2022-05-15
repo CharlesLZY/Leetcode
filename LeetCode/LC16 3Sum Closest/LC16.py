@@ -13,7 +13,7 @@ You may assume that each input would have exactly one solution.
 # @param target int 
 # @return int
 
-### TC: O(n) and SC: O(n)
+### TC: O(n^2) and SC: O(n)
 class Solution:
     def threeSumClosest(self, nums, target):
         nums.sort()
@@ -38,3 +38,4 @@ class Solution:
                     return target
 
         return target + MIN_diff
+

@@ -2,12 +2,14 @@
 Leetcode 170. Two Sum III - Data structure design
 
 Description:
-Design a data structure that accepts a stream of integers and checks if it has a pair of integers that sum up to a particular value.
+Design a data structure that accepts a stream of integers and checks 
+if it has a pair of integers that sum up to a particular value.
 
 Implement the TwoSum class:
 - TwoSum() Initializes the TwoSum object, with an empty array initially.
 - void add(int number) Adds number to the data structure.
-- boolean find(int value) Returns true if there exists any pair of numbers whose sum is equal to value, otherwise, it returns false.
+- boolean find(int value) Returns true if there exists any pair of numbers whose sum is equal to value, 
+  otherwise, it returns false.
 '''
 
 ### Sorted List Solution
@@ -66,6 +68,7 @@ class TwoSum:
 
 ### Hash Table Solution
 ### TC: TC: add O(1) find O(n)
+from collections import defaultdict
 class TwoSum:
     def __init__(self):
         self.hashTable = {}
@@ -77,11 +80,10 @@ class TwoSum:
             self.hashTable[number] = 1
 
     def find(self, value):
-
         for n in self.hashTable.keys():
             complement = value - n
             if complement in self.hashTable:
-                if complement == n:
+                if complement == n: ### corner case: if target == 2*n
                     if self.hashTable[n] > 1:
                         return True
                 else:

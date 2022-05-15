@@ -18,7 +18,7 @@ class Solution:
         for i in range(len(s)):
             cur = s[i]
             hashTable[ord(cur)] += 1
-            while hashTable[ord(cur)] > 1: ### keeping narrowing the interval
+            while hashTable[ord(cur)] > 1: ### keeping narrowing the interval (moving lp) until cur only occurs once
                 hashTable[ord(s[lp])] -= 1
                 lp += 1
             MAX = max(MAX, i - lp + 1)
@@ -39,3 +39,17 @@ class Solution:
             hashTable[ord(cur)] = i ### update to latest index
             MAX = max(MAX, i - lp + 1)
         return MAX
+
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        MAX = 0
+        hashTable = {}
+        lp = 0
+        for i in range(len(s)):
+            cur = s[i]
+            if cur in hashTable:
+                lp = max(hashTable[cur], lp) ### trick: only keep the rightmost one
+            hashTable[cur] = i+1
+            MAX = max(MAX, i-lp+1)
+        return MAX
+

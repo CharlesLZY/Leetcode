@@ -69,9 +69,9 @@ def twoSumSmaller(nums, target):
         rp = high
 
         while lp < rp:
-            mid = (lp + rp) // 2 + 1 ### trick
+            mid = (lp + rp) // 2 + 1 ### trick: ensure that mid > lp
             if nums[mid] < n:
-                lp = mid
+                lp = mid ### trick: mid must be bigger than lp
             else:
                 rp = mid - 1
         return rp if nums[rp] < n else -1

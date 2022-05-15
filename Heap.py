@@ -4,7 +4,13 @@ In a max heap, for any given node C, if P is a parent node of C, then the value 
 A common implementation of a heap is the binary heap which is implemented as array for the efficiency. 
 Therefore, given a node at index i, its children are at indices 2i+1 and 2i+2, and its parent is at index (i−1) // 2
 '''
-
+from queue import PriorityQueue ### 是用heapq实现的
+heap = PriorityQueue()
+array = [('b', 2), ('a', 1), ('c', 3)]
+for char, p in array:
+    heap.put(char, p)
+while not heap.empty():
+    print(heap.get())
 
 from heapq import * ### only supply min heap, we need to encapsulate our own max heap
 
