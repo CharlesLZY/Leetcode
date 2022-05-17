@@ -27,7 +27,7 @@ class Solution:
                     lp = mid + 1
                 elif nums[mid] > target:
                     rp = mid - 1
-                else:
+                else: ### nums[mid] == target
                     if mid > 0 and nums[mid-1] != target:
                         return mid
                     elif mid == 0:
@@ -63,11 +63,11 @@ class Solution:
 ### TC: O(logn) and SC: O(1)
 class Solution:
     def searchRange(self, nums, target):
-        def search(target):
+        def search(target): ### find the first equal
             lp = 0
             rp = len(nums)
             while lp < rp:
-                mid = (lp + rp) // 2
+                mid = (lp + rp) // 2 ### mid is ensured to be smaller than rp
                 if nums[mid] >= target:
                     rp = mid
                 else:
@@ -86,7 +86,7 @@ class Solution:
 ### TC: O(logn) and SC: O(1)
 class Solution:
     def searchRange(self, nums, target):
-        def search(n): ### we want to find the position before n
+        def search(n): ### find the last smaller than
             lp = 0
             rp = len(nums) - 1
             while lp <= rp:
@@ -107,3 +107,41 @@ class Solution:
             return [-1,-1]
         
         return [lp+1, rp]
+
+### Another Solution
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        def findLastLET(target): ### last less or equal than
+            lp = 0
+            rp = len(nums)-1
+            while lp < rp:
+                mid = (lp + rp) // 2 + 1 ### mid is ensured to be bigger than lp
+                if nums[mid] <= target:
+                    lp = mid
+                else:
+                    rp = mid - 1
+            if lp == 0 and nums[lp] > target:
+                return -1
+            else:
+                return lp
+
+        '''
+        if nums:  
+            lp = findLastLET(target-1)+1
+            rp = findLastLET(target)
+            lp = lp if lp < len(nums) and nums[lp] == target else -1
+            rp = rp if nums[rp] == target else -1
+            return [lp, rp]
+        else:
+            return [-1, -1]
+        '''
+        
+        if nums:  
+            lp = findLastLET(target-1)+1
+            rp = findLastLET(target)
+            if lp <= rp:
+                return [lp, rp]
+            else:
+                return [-1, -1]
+        else:
+            return [-1, -1]

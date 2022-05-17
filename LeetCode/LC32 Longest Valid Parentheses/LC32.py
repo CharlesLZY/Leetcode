@@ -24,9 +24,54 @@ class Solution:
                     stack[0] = i
                 elif len(stack) > 1: ### still have unpaired '('
                     stack.pop()
-                curLength = i - stack[-1]
+                curLength = i - stack[-1] ### i is current parentheses end and stack[-1] is the lastes invalid ')'
                 MAX = max(MAX, curLength)
         return MAX
+
+### Two Pass Solution
+### TC: O(n) and SC: O(1)
+class Solution:
+    def longestValidParentheses(self, s):
+        ans = 0
+        ### the first pass
+        n_lp = 0
+        n_rp = 0
+        for char in s:
+            if char == '(':
+                n_lp += 1
+            elif char == ')':
+                n_rp += 1
+            if n_lp == n_rp:
+                ans = max(ans, n_lp+n_rp)
+            elif n_lp < n_rp: ### impossible to form a valid parentheses
+                n_lp = 0
+                n_rp = 0
+            else:
+                pass
+
+        ### the second pass
+        n_lp = 0
+        n_rp = 0
+        for char in s[::-1]:
+            if char == '(':
+                n_lp += 1
+            elif char == ')':
+                n_rp += 1
+            if n_lp == n_rp:
+                ans = max(ans, n_lp+n_rp)
+            elif n_rp < n_lp: ### impossible to form a valid parentheses
+                n_lp = 0
+                n_rp = 0
+            else:
+                pass
+
+        return ans
+
+
+
+
+
+
 
 
 

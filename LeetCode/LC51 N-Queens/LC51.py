@@ -18,7 +18,6 @@ where 'Q' and '.' both indicate a queen and an empty space, respectively.
    "Q...",
    "...Q",
    ".Q.."]]
-
 '''
 
 # @param n int
@@ -41,7 +40,7 @@ class Solution:
         def valid(state, cur_row, candidate_col):
             for row in range(cur_row): ### cur_row is the new candidate's row
                 col = state[row]
-                ### check diagonal and whether there is same col (no need to check same row because we only asign one queen per row)
+                ### check diagonal and whether there is the same col (no need to check same row because we only asign one queen per row)
                 if abs(row - cur_row) == abs(col- candidate_col) or col == candidate_col: ### smart way to check diagonal
                     return False
             return True
@@ -58,7 +57,7 @@ class Solution:
             for col in range(n):
                 if valid(state, row, col):
                     state[row] = col
-                    DFS(state, row+1)
+                    DFS(state, row+1) ### we move row by row (no need to check row for validity)
 
         empty_state = [None for _ in range(n)]
         DFS(empty_state, 0)
@@ -67,3 +66,5 @@ class Solution:
             result[i] = create_board(result[i])
 
         return result
+
+

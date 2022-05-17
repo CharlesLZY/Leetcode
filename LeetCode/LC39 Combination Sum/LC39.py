@@ -32,7 +32,7 @@ class Solution:
 
             for i in range(idx, len(candidates)):
                 if res - candidates[i] < 0:
-                    # break ### other options are larger than current one
+                    # break ### other options are larger than current one, if we have sorted the array
                     continue
                 else:
                     path.append(candidates[i])

@@ -44,6 +44,7 @@ class Solution:
                     return True
                 else: ### if skip current _* pattern will not lead to a successful match, then we have to match it
                     ### trick: important to check whether s has run out
+                    ### s_i == len(s) but p_j < len(p)
                     if s_i == len(s): ### s is run out, but skiping current _* will not give a successful match, then failed
                         ### in this branch, _* is not skipped which means empty string with non-empty pattern
                         ### example case: s = abc p = .*c                              
@@ -71,7 +72,7 @@ class Solution:
 ### DP Solution
 class Solution:
     def isMatch(self, s, p):
-        DP_table = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]
+        DP_table = [[False]*(len(p)+1) for _ in range(len(s)+1)]
         ### the DP_table need to be filled from bottom to top
         ### DP[i][j] means whether s[i:] is valid according to p[j:] 
         DP_table[len(s)][len(p)] = True ### empty string with empty pattern 
@@ -89,6 +90,7 @@ class Solution:
                         DP_table[s_i][p_j] = direct_match and DP_table[s_i+1][p_j+1] ### the result depends on whether the current pattern is matched and the successor match dp[s_i+1][p_j+1]
                     else:
                         DP_table[s_i][p_j] = False
+                        
         return DP_table[0][0]
 
 

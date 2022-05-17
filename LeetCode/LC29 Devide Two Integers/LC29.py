@@ -47,15 +47,15 @@ class Solution:
         if dividend == MIN_INT and divisor == -1: ### corner case: MAX_INT overflow
             return MAX_INT
 
-        sign = (dividend > 0)^(divisor > 0)
+        sign = (dividend > 0)^(divisor > 0) ### xor
         
         dividend = abs(dividend)
         divisor = abs(divisor)
         
         quotient = 0
         while dividend >= divisor:
-            temp = divisor
             res = 1
+            temp = divisor
             while dividend >= temp:
                 dividend -= temp
                 quotient += res
@@ -64,6 +64,30 @@ class Solution:
 
         return -quotient if sign else quotient 
 
+### another version
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        MAX_INT =  2147483647  ###  2**31 - 1
+        MIN_INT = -2147483648  ### -2**31
 
+        if dividend == MIN_INT and divisor == -1: ### corner case: MAX_INT overflow
+            return MAX_INT
+        sign = (dividend > 0) ^ (divisor > 0)
+        
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+
+        quotient = 0
+        while dividend >= divisor:
+            res = 1 ### quotient
+            div = divisor
+            temp = dividend - div
+            while temp >= div:
+                div = div << 1
+                res = res << 1
+                temp = dividend - div
+            quotient += res
+            dividend -= div
+        return -quotient if sign else quotient 
 
 

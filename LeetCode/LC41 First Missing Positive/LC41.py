@@ -18,9 +18,7 @@ Output: 3
 # @param nums List[int]
 # @return int
 
-'''
-这题是Hard难度，因为可能的情况非常多，只通过遍历一遍找一个数提供的信息是不够的
-'''
+### 这题难在会有负数和0
 
 ### TC: O(n) and SC: O(1)
 class Solution:
@@ -30,6 +28,7 @@ class Solution:
             cur = nums[i]
             if 0 < cur <= len(nums) and nums[cur-1] != cur:
                 nums[i], nums[cur-1] = nums[cur-1], nums[i] ### we can not move forward after swapping, because we don't know what number is swapped to here e.g. [0,4,2,1]
+                ### trick: i remains the same
             else:
                 i += 1
         
@@ -43,6 +42,7 @@ class Solution:
 class Solution:
     def firstMissingPositive(self, nums):
         n = len(nums)
+        nums = set(nums)
         for i in range(1, n+1):
             if i not in nums:
                 return i

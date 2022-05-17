@@ -37,7 +37,7 @@ class Solution:
         num2 = num2[::-1] ### reverse the string for convenience
 
         def multiplyOneDigit(num, digit): ### num is reversed
-            ans = []
+            ans = [] ### digits of the result in reversed order
             carry = 0
             for n in num:
                 temp = val(n) * val(digit) + carry
@@ -50,7 +50,8 @@ class Solution:
         numToSum = []
 
         for i in range(len(num2)):
-            numToSum.append(multiplyOneDigit('0'*i+num1, num2[i]))
+            ### trick: 123 * 200 = 123*100 * 2
+            numToSum.append(multiplyOneDigit('0'*i+num1, num2[i])) ### nums has been reversed
 
         result = numToSum.pop() ### initialize the answer
         

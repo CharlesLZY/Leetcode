@@ -23,12 +23,14 @@ You must write an algorithm with O(log n) runtime complexity.
 ### Baseline Solution
 class Solution:
     def search(self, nums, target):
-        
         def findPivot():
             left = 0
             right = len(nums) - 1
             while left < right: ### pivot must exist, if left == right, then that position is the pivot
-                if nums[left] < nums[right]:
+                '''
+                THE MOST IMPORTANT TRICK
+                '''
+                if nums[left] < nums[right]: ### this if is the trick
                     return left
                 mid = (left + right) // 2
                 if nums[mid] < nums[left]: ### trick: only compare with left
@@ -36,7 +38,8 @@ class Solution:
                 elif nums[mid] > nums[left]: ### trick: only compare with left
                     left = mid + 1
                 else:
-                    left += 1
+                    ### Another Trick
+                    left += 1 ### can not use left = mid because lp may equal to mid
             return left
 
          def findPivot():

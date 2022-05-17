@@ -216,6 +216,7 @@ LC438 全体同分异构字符 (用Counter，一个char次数变为0了，从Cou
 LC209 正数组里面最短的连续子序大于等于target (维护一个lp, 然后用for n in nums的结构)
 
 ### Sort/Search
+LC34 在排序数组中找一个数第一个和最后一个 (写一个findFirstEqual, 通过最后判断lp<=rp来判断找到的上下界对不对)
 LC69 开根号 (二分法, lp=2, rp=x//2, 比较mid*mid和x谁大)
 JZ40 最小的K个数 (维护一个大小为k的最大堆) (quick select, 写完partition, 接下来可以用二分法, 但要注意lp=mid+1 rp=mid-1)
 LC215 快速选择 (TC:O(n), 找pivot用for, 记得加random,和high交换一下，select可以用递归,也可以用二分)

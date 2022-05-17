@@ -42,6 +42,7 @@ class Solution:
 ### Sort Solution
 class Solution:
     def permuteUnique(self, nums):
+        nums.sort() ### sort the array first
         ans = []
         def forward(perm, resNums):
             if len(resNums) == 0:
@@ -54,6 +55,9 @@ class Solution:
                         perm.append(resNums[i])
                         forward(perm, resNums[:i] + resNums[i+1:])
                         perm.pop()
-        nums.sort()
         forward([], nums)
         return ans
+
+
+
+        
