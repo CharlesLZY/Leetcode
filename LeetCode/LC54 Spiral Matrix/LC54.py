@@ -18,6 +18,7 @@ class Solution:
         left = 0
         right = w-1
 
+        # while up <= bottom and left <= right:
         while len(ans) < h*w: ### Trick 1: loop end condition
             '''
             Trick 2:

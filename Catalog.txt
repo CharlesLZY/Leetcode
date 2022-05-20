@@ -147,7 +147,7 @@ LC224/227/772 中缀表达式计算器 (先去掉所有的空格, 维护numStack
 遇到一个新的operator, 如果优先级小于等于operatorStack之前的operator, 就把前面所有优先级高的operator处理掉, 每处理完一个operator, 
 遇到负数开头,就先往numstack放一个0,再往operatorStack里面放一个-
 写一个calOnce(), 每次处理一个operator,把结果push回numStack, 栈里面最多只会有一个'+'或'-'和一个'*'或'/')
-
+LC71 简化路径 (维护一个stack, 遇到..就pop, 最后把stack剩下的组成一个合法路径)
 
 
 ### DP (recursion with memoization, if DP[i] != None: return DP[i] 通常用在递归有大量重复的情况)

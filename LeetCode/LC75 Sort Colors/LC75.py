@@ -25,7 +25,7 @@ class Solution:
         lp = 0 ### last 0's index
         rp = len(nums)-1 ### last 2's index
         cur = 0
-        while cur <= rp: ### trick: cannot use for loop
+        while cur <= rp: ### trick: cur <= rp
             if nums[cur] == 0:
                 nums[lp], nums[cur] = nums[cur], nums[lp]
                 lp += 1
