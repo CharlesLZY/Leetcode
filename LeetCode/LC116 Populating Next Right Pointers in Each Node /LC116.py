@@ -63,7 +63,7 @@ class Solution:
             return root
         else:
             prevHead = root ### use previous level nodes' next to link current level nodes
-            while prevHead.left: ### suppose nodes' next are all set in the previous level
+            while prevHead.left: ### suppose nodes' nexts are all set in the previous level
                 cur = prevHead
                 while cur:
                     cur.left.next = cur.right

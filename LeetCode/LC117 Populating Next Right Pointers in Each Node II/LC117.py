@@ -82,8 +82,59 @@ class Solution:
 ### TC: O(n) and SC: O(1)
 class Solution:
     def connect(self, root):
-       
-       
+        def helper(node, nextLeftmost, prev):
+            ### 1. find the leftmost node of the next level 
+            ### 2. link all nodes in the next level
+            if node:
+                if nextLeftmost is None:
+                    nextLeftmost = node
+                if prev:
+                    prev.next = node
+                    prev = prev.next
+                else:
+                    prev = node
+            return nextLeftmost, prev
+
+        if root is None:
+            return root
+        else:
+            leftmost = root ### leftmost node of cur level
+            ### we suppose current level nodes' nexts are all set
+            ### each level will cost one time while loop
+            ### in each loop, two tasks will be done
+            ### 1. find the leftmost node of the next level
+            ### 2. link all nodes in the next level
+            while leftmost:
+                nextLeftmost = None ### the leftmost node of the next level
+                prev = None ### for linking nodes
+                cur = leftmost
+
+                while cur: ### we suppose current level nodes' nexts are all set
+                ### 1. find the leftmost node of the next level 
+                ### 2. link all nodes in the next level
+                    # if cur.left:
+                    #     if nextLeftmost is None:
+                    #         nextLeftmost = cur.left
+                    #     if prev:
+                    #         prev.next = cur.left
+                    #         prev = prev.next
+                    #     else:
+                    #         prev = cur.left
+                    # if cur.right:
+                    #     if nextLeftmost is None:
+                    #         nextLeftmost = cur.right
+                    #     if prev:
+                    #         prev.next = cur.right
+                    #         prev = prev.next
+                    #     else:
+                    #         prev = cur.right
+                    nextLeftmost, prev = helper(cur.left, nextLeftmost, prev)
+                    nextLeftmost, prev = helper(cur.right, nextLeftmost, prev)
+                    cur = cur.next
+
+                leftmost = nextLeftmost
+
+            return root
 
 
 
