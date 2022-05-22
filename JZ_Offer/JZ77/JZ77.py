@@ -14,6 +14,7 @@ JZ77 按之字形顺序打印二叉树
 # @param pRoot TreeNode 
 # @return List[List[int]]
 
+### BFS Solution
 ### TC: O(n) and SC: O(n)
 class Solution:
     def Print(self, pRoot):

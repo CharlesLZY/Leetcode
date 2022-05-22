@@ -28,7 +28,6 @@ class Solution:
             return ""
 
         ans = ""
-        MIN = float("inf")
         checkList = Counter(t) ### how many times characters of t need to be contained
         n_check = len(checkList) ### how many constraints are still not finished 
 
@@ -40,10 +39,9 @@ class Solution:
                     n_check -= 1
 
                 while n_check == 0: ### whole t is contained in the window
-                    if rp - lp + 1 < MIN: ### update the min window
-                        MIN = rp-lp+1
+                    if rp - lp + 1 < len(ans) or ans == "": ### update the min window
                         ans = s[lp:rp+1]
-                    if s[lp] in checkList:
+                    if s[lp] in checkList: ### start to contract the window
                         checkList[s[lp]] += 1 ### we are goint to constract the window
                         if checkList[s[lp]] == 1:
                             n_check += 1 ### the constraint is not satisfied now

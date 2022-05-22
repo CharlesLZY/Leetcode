@@ -47,6 +47,7 @@ LC448 数组中没出现的数 (Negative Mark index, 注意别重复mark)
 JZ11/LC153 旋转数组最小数字 (key point: if rotateArray[left] < rotateArray[right]: return left，二分查找，因为可能有重复数字缩小范围的时候要注意处理相同的情况)
 LC154 旋转数组最小数字
 LC33 搜索旋转数组 (找pivot的位置(注意分类讨论), 会出现nums[lp]==nums[rp]只有在最开始的时候（或者最后只剩同一个数字）,头尾相同，根据二分的时候比较的对象选择是pop掉末尾的还是开头的，主义在找pivot的时候，如果遇到lp到rp之前是排好序的，直接返回lp)
+LC81 搜索旋转数组 (找到pivot之后，如果pivot是第一个数，要把数组末尾和pivot相等的数字给pop光)
 JZ39/LC169 数组中出现超过一半的数 (candidate和vote 一换一策略，最后剩下的就是过半的)
 JZ42/LC53 最大子序和 (cur = max(n, cur+n) ans = max(cur, ans))
 LC152 最大乘积子序 (记录curMIN等待他有机会闲鱼翻身, curMAX = max(nums[i], nums[i]*tmp, nums[i]*curMIN), curMIN = min(nums[i], nums[i]*tmp, nums[i]*curMIN), 但要注意curMAX和curMIN得同时更新, 或者用DP填表存一下就没这个问题)
@@ -94,6 +95,7 @@ LC200 岛屿数量 (遍历二维数组, 维护visited list, 每遇到一个1,就
 LC329 矩阵中最长递增路径 (DFS + memoization, 因为是递增路径, 所以是DAG没环的)
 
 ### 链表 (链表的题一定要先判断有没有环, 快慢指针是最常用的trick,可以用来找环，找中点，找倒数第k个的元素。多声明一些临时变量,dummy head, 方便连来连去)
+LC82 删除有重复的节点，本体和分身都不留(维护prev和cur,在有重复值的情况,只更新prev.next,跳过重复的值)
 JZ6 逆序打印链表 (recursive to tail)
 LC234 判断链表是否是回文的 (递归,需要维护一个全局的cur, 递归会一直到链表的tail,然后再一层一层回来, cur则正向往下走, 也可以用快慢指针，把后一半reverse，然后一一比对，这样可以实现O(1))
 JZ18 删除链表节点 (遍历就完了)
@@ -210,7 +212,7 @@ LC11 能盛最多水的容器 (初始化lp，rp在左右两端，更新容积，
 LC42 接雨水 (维护一个leftmax和rightmax 初始化为0, 如果lp比rp小，且lp比leftmax小，更新当前这格配合leftmax能蓄的水，否则更新leftmax, lp++, 如果rp比lp小类似的)
 LC75 排序法国国旗 (用while cur <= rp，cur遇到0和lp交换，lp++,cur++，cur遇到2和rp交换rp--，cur不动，换过来的是啥我们不知道, 留在原地继续处理换过来的数)
 ### LC41 数组中缺失的最小正数 (默认答案为len(nums)+1), 如果数值做index来标记, 遇到数值不在其对应的index上,就交换,这时候while的循环变量不要++,因为我们不知道换过来的是什么)
-LC76 最短包含目标字符串的子串 (用Counter记录当前匹配情况, for rp in range(len(s)) 每找到一个子串更新MIN, lp++, 但counter里面可能会有负数因为有冗余次数，所以需要额外维护一个n_toCheck，来记录当前是否不匹配)
+LC76 最短包含目标字符串的子串 (用Counter记录当前匹配情况,每次满足条件之后就开始尝试缩小window, for rp in range(len(s)) 每找到一个子串更新MIN, lp++, 但counter里面可能会有负数因为有冗余次数，所以需要额外维护一个n_toCheck，来记录当前是否不匹配)
 LC438 全体同分异构字符 (用Counter，一个char次数变为0了，从Counter中删除, 双指针explore字符串)
 76和438不太一样，一个是要包含一个是要完全一样，所以LC438要把不在pattern里面的字符也统计进counter
 LC209 正数组里面最短的连续子序大于等于target (维护一个lp, 然后用for n in nums的结构)

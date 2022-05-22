@@ -121,6 +121,9 @@ class Solution:
         DP_table = [0] * m
         for j in range(n):
             for i in range(m): ### update the histogram for each column
+                '''
+                因为DP_table是一列一列更新的，所以我们不用维护整张表，维护一列就行了
+                '''
                 DP_table[i] = DP_table[i] + 1 if matrix[i][j] == '1' else 0
             MAX = max(MAX, largestRectangleAreaInHistogram(DP_table))
         return MAX

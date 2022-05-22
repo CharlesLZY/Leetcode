@@ -17,6 +17,10 @@ Note: A leaf is a node with no children.
 # @param root TreeNode
 # @return int
 
+'''
+这题直接写一个depth(root)是行不通的，因为depth找的是maxDepth
+'''
+
 ### TC: O(n) and SC: O(n)
 class Solution:
     def minDepth(self, root):
@@ -68,3 +72,4 @@ class Solution:
             else:
                 MIN_depth = min(MIN_depth, depth)
         return MIN_depth
+

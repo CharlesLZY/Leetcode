@@ -17,37 +17,42 @@ leaving only distinct numbers from the original list. Return the linked list sor
 ### TC: O(n) and SC: O(1)
 class Solution:
     def deleteDuplicates(self, head):
-        dummy = ListNode(next=head) ### trick: dummy head can bring a lot of convenience
-        prev = dummy
-        while head:
-            if head.next and head.next.val == head.val:
-                while head.next and head.next.val == head.val:
-                    temp = head.next
-                    head.next = head.next.next
-                    del temp ### C/C++
-                prev.next = head.next
-                del head
-                head = prev.next
+        idle = ListNode() ### trick: idle head can bring a lot of convenience
+        prev = idle
+        cur = head
+        while cur:
+            if cur.next and cur.next.val == cur.val:
+                ### in this branch, we will not add any node to the result, we only skip the duplicated nodes
+                while cur.next and cur.next.val == cur.val:
+                    # temp = cur.next
+                    cur.next = cur.next.next
+                    # del temp ### C/C++ style
+                prev.next = cur.next ### trick
+                # del cur
+                cur = cur.next
             else:
-                head = head.next
+                ### why we do not need to update prev.next?
+                ### 因为本来就是连着的，我们要做的只是把连续重复的给跳过了
+                cur = cur.next
                 prev = prev.next
 
-        return dummy.next
+        return idle.next
+
 
 class Solution:
     def deleteDuplicates(self, head):
-        dummy = ListNode(next=head) ### trick
-        prev = dummy
-        while head:
-            if head.next and head.val == head.next.val:
-                # move till the end of duplicates sublist
-                while head.next and head.val == head.next.val:
-                    head = head.next
-                # skip all duplicates
-                prev.next = head.next
+        idle = ListNode()
+        prev = idle
+        cur = head
+        while cur:
+            if cur.next and cur.next.val == cur.val:
+                while cur.next and cur.next.val == cur.val:
+                    cur = cur.next
+                prev.next = cur.next
+                cur = cur.next
             else:
+                prev.next = cur
                 prev = prev.next
+                cur = cur.next
+        return idle.next
 
-            head = prev.next
-            
-        return dummy.next

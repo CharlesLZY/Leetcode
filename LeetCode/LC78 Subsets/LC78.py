@@ -11,14 +11,17 @@ The solution set must not contain duplicate subsets. Return the solution in any 
 # @param nums  List[int]
 # @return List[List[int]]
 
+### A more general solution is in LC90
+
 class Solution:
     def subsets(self, nums):
         ans = []
-        def forward(path, idx):
+        def DFS(path, idx):
             if idx == len(nums):
                 ans.append(path[:])
                 return
-            forward(path, idx+1) ### skip current number
-            forward(path+[nums[idx]], idx+1)
-        forward([], 0)
+            else:
+                DFS(path, idx+1) ### skip current number
+                DFS(path+[nums[idx]], idx+1)
+        DFS([], 0)
         return ans

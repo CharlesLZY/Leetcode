@@ -20,8 +20,8 @@ class Solution:
     def minDistance(self, word1, word2):
         m = len(word1)
         n = len(word2)
-
-        DP_table = [[0]*(n+1) for _ in range(m+1)] ### the edit distance between word1[:i] and word2[:j]
+        ### start from the empty string
+        DP_table = [[0]*(n+1) for _ in range(m+1)] ### DP[i][j]: the edit distance between word1[:i] and word2[:j]
         '''
         It turns out that one could compute D[i][j], knowing D[i - 1][j], D[i][j - 1] and D[i - 1][j - 1].
         If word1[i] == word2[j]:

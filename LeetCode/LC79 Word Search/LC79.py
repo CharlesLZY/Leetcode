@@ -19,7 +19,7 @@ class Solution:
             if board[x][y] != remain[0]: ### this contains the check of whether the position was visited, since we use board as visited list
                 return False
             else:
-                if len(remain) == 1:
+                if len(remain) == 1: ### without this branch, if the board only has one grid, it will fail because we will check whether the succeeded position is valid before recursion
                     return True
                 board[x][y] = '#' ### marked as visited
                 for action in [(0,1), (1,0), (0,-1), (-1,0)]:
@@ -46,6 +46,7 @@ class Solution:
                 return True
 
             if row < 0 or row == n_row or col < 0 or col == n_col or board[row][col] != suffix[0]:
+                ### board[row][col] != suffix[0] contains the check of whether the position was visited
                 return False
             else:
                 board[row][col] = "#" ### explored
@@ -62,7 +63,7 @@ class Solution:
         return False
 
 
-### Need to optimize
+### Need to optimize, we can have in-place solution
 class Solution:
     def exist(self, board, word):
         n_row, n_col = len(board), len(board[0])

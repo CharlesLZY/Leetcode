@@ -34,7 +34,7 @@ class Solution:
                 elif nums[mid] < nums[rp]:
                     rp = mid
                 else:
-                    rp -= 1
+                    rp -= 1 ### trick
 
             return lp
 
@@ -52,20 +52,22 @@ class Solution:
 
             return False
 
+        ### THE MOST IMPORTANT TRICK！！！
         while len(nums)> 1 and nums[0] == nums[-1]: ### trick: remove the duplicates at the end
             nums.pop()
 
         pivotIdx = findPivot()
-        if pivotIdx == 0:
-            return binarySearch(0, len(nums)-1)
-        elif nums[pivotIdx] > target:
-            return False
-        elif nums[pivotIdx-1] < target:
-            return False
-        elif nums[pivotIdx] <= target <= nums[-1]:
-            return binarySearch(pivotIdx, len(nums)-1)
-        else:
-            return binarySearch(0, pivotIdx-1)
+        # if pivotIdx == 0:
+        #     return binarySearch(0, len(nums)-1)
+        # elif nums[pivotIdx] > target:
+        #     return False
+        # elif nums[pivotIdx-1] < target:
+        #     return False
+        # elif nums[pivotIdx] <= target <= nums[-1]:
+        #     return binarySearch(pivotIdx, len(nums)-1)
+        # else:
+        #     return binarySearch(0, pivotIdx-1)
+        return binarySearch(0, pivotIdx-1) or binarySearch(pivotIdx, len(nums)-1)
 
 
 
@@ -85,7 +87,7 @@ class Solution:
                 elif nums[mid] < nums[lp]:
                     rp = mid
                 else:
-                    lp += 1
+                    lp += 1 ### trick
 
             return lp
 
@@ -103,19 +105,20 @@ class Solution:
 
             return False
 
+        ### THE MOST IMPORTANT TRICK！！！
         while len(nums)> 1 and nums[0] == nums[-1]: ### trick: remove the duplicates at the end
             nums.pop(0)
 
         pivotIdx = findPivot()
-        print(nums[pivotIdx], pivotIdx, nums)
-        if pivotIdx == 0:
-            return binarySearch(0, len(nums)-1)
-        elif nums[pivotIdx] > target:
-            return False
-        elif nums[pivotIdx-1] < target:
-            return False
-        elif nums[pivotIdx] <= target <= nums[-1]:
-            return binarySearch(pivotIdx, len(nums)-1)
-        else:
-            return binarySearch(0, pivotIdx-1)
+        # if pivotIdx == 0:
+        #     return binarySearch(0, len(nums)-1)
+        # elif nums[pivotIdx] > target:
+        #     return False
+        # elif nums[pivotIdx-1] < target:
+        #     return False
+        # elif nums[pivotIdx] <= target <= nums[-1]:
+        #     return binarySearch(pivotIdx, len(nums)-1)
+        # else:
+        #     return binarySearch(0, pivotIdx-1)
+        return binarySearch(0, pivotIdx-1) or binarySearch(pivotIdx, len(nums)-1)
 

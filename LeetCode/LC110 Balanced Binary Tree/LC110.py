@@ -33,6 +33,7 @@ class Solution:
             else:
                 return self.isBalanced(root.left) and self.isBalanced(root.right)
 
+### Optimized Solution
 ### TC: O(n) and SC: O(n)
 class Solution:
     def isBalanced(self, root):
