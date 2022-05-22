@@ -24,7 +24,8 @@ class Solution:
         def straighten(node):
             if node is None:
                 return None
-            if node.left is None and node.right is None:
+            ### IMPORTANT BASE CASE
+            if node.left is None and node.right is None: ### trick
                 return node
             leftTail = straighten(node.left) ### recursivly flatten sub-tree, get the rightmost node of the flatten sub-tree
             rightTail = straighten(node.right) ###  the rightmost node of the flatten right sub-tree will be the rightmost node for the current flatten tree
