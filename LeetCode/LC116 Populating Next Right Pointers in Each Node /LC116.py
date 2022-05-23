@@ -55,6 +55,30 @@ class Solution:
                 head = head.next
             return root
 
+### Better BFS Solution
+### TC: O(n) and SC: O(n)
+class Solution:
+    def connect(self, root):
+        if root is None:
+            return root
+        queue = []
+        queue.append(root)
+        queue.append(None) ### use None to mark the end of current level
+        
+        while queue:
+            cur = queue.pop(0)
+            if cur == None: ### trick: when we reach the end of current level, nodes in next level have been in the queue
+                if queue: ### if it is not the end of the last level
+                    queue.append(None) ### mark the end of the next level
+            else:
+                cur.next = queue[0] ### before we meet None, we can ensure that all nodes are in the same level
+                if cur.left:
+                    queue.append(cur.left)
+                if cur.right:
+                    queue.append(cur.right)
+
+        return root
+
 ### Better Solution utilizing previous level
 ### TC: O(n) and SC: O(1)
 class Solution:

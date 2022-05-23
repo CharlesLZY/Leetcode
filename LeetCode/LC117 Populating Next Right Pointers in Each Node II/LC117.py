@@ -58,7 +58,7 @@ class Solution:
 ### TC: O(n) and SC: O(n)
 class Solution:
     def connect(self, root):
-		if root is None:
+        if root is None:
             return root
         queue = []
         queue.append(root)

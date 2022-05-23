@@ -24,6 +24,7 @@ class Solution:
     def pathSum(self, root, targetSum):
         ans = []
         def DFS(node, res, path):
+            ### 不能if node is None: return 因为这样会误判叶节点
             res += node.val
             path.append(node.val)
             if node.left is None and node.right is None:  ### leaf node

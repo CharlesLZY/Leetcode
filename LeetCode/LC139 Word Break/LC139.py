@@ -55,7 +55,7 @@ class Solution:
 class Solution:
     def wordBreak(self, s, wordDict):
         wordDict = set(wordDict) ### key point (enable O(1) find operation)
-        DP_table = [False]*(len(s)+1) ### DP[i] means whether s[:i+1] can be seperated into the words in wordDict
+        DP_table = [False]*(len(s)+1) ### DP[i] means whether s[:i] can be seperated into the words in wordDict
         DP_table[0] = True
 
         for i in range(1, len(s)+1):
@@ -65,3 +65,6 @@ class Solution:
                     break
 
         return DP_table[len(s)]
+
+
+

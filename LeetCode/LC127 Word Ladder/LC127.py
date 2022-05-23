@@ -17,6 +17,7 @@ return the number of words in the shortest transformation sequence from beginWor
 # wordList List[str] 
 # @return int
 
+### BFS Solution (BFS can ensure the current path is the shortest)
 ### TC: O(NL^2) and SC: O(NL^2) where L is the length of the words
 from collections import deque
 class Solution(object):
@@ -26,10 +27,10 @@ class Solution(object):
 
         L = len(beginWord) ### all words have the same length
 
-        patterns = {}
+        patterns = {} ### build graph (this problem is a graph search)
         for word in wordList:
             for i in range(L):
-                pattern = word[:i]+'*'+word[i+1:]
+                pattern = word[:i]+'*'+word[i+1:] ### we can only change one letter each time
                 if pattern in patterns:
                     patterns[pattern].append(word)
                 else:
@@ -37,20 +38,20 @@ class Solution(object):
 
 
         queue = deque([(beginWord, 1)])
-        visited = set([beginWord])
+        visited = set([beginWord]) ### trick : graph search must maintain a visited list
         
         while queue:
-            cur, res = queue.popleft()
+            cur, depth = queue.popleft()
             if cur == endWord:
-                return res
+                return depth
             
             for i in range(L):
                 pattern = cur[:i]+'*'+cur[i+1:]
                 if pattern in patterns:
                     for word in patterns[pattern]:
-                        if word not in visited:
+                        if word not in visited: ### trick: must be here, or it will cause infinite loop
                             visited.add(word) ### trick: we can mark it as visited we append it into the queue
-                            queue.append((word, res+1))
+                            queue.append((word, depth+1))
                 
         return 0
 
@@ -74,21 +75,21 @@ class Solution(object):
 
 
         queue = deque([(beginWord, 1)])
-        visited = set()
+        visited = set() ### trick : graph search must maintain a visited list
         
         while queue:
-            cur, res = queue.popleft()
+            cur, depth = queue.popleft()
             
             if cur == endWord:
-                return res
+                return depth
             visited.add(cur) ### the difference from the faster version
             
             for i in range(L):
                 pattern = cur[:i]+'*'+cur[i+1:]
                 if pattern in patterns:
                     for word in patterns[pattern]:
-                        if word not in visited:
-                            queue.append((word, res+1))
+                        if word not in visited: ### trick: must be here, or it will cause infinite loop
+                            queue.append((word, depth+1))
                 
         return 0
 

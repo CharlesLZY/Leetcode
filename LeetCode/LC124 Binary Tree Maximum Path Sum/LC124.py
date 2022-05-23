@@ -26,7 +26,6 @@ The difficult part of this problem is that the path can start from child. e.g. l
 
 ### TC: O(n) and SC: O(n)
 class Solution:
-    MAX = float("-inf")
     def maxPathSum(self, root):
         self.MAX = float("-inf")
         def maxHalfPath(node): ### the max path sum of all paths end at the node, node.val + max(leftPath, rightPath)
