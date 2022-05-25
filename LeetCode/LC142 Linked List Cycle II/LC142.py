@@ -64,3 +64,29 @@ class Solution:
             return fast
         else:
             return None
+
+### Another Version
+class Solution:
+    def detectCycle(self, head):
+        if head is None:
+            return None
+
+        hasCycle = False
+        slow = head
+        fast = head.next ### must be like this
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                hasCycle = True
+                break
+
+        if hasCycle:
+            slow = slow.next ### trick
+            fast = head
+            while fast != slow:
+                fast = fast.next
+                slow = slow.next
+            return fast
+        else:
+            return None

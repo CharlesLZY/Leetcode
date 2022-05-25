@@ -239,6 +239,8 @@ LC162 找一个局部极大值 (题目要求相邻的数不会相等, 如果mid 
 LC1901 二维数组找极大值 (选mid行，找这一行的最大值，看上下那个比max大，那么这个数比mid这一行都大，那么那一半一定有个极值点，想象一下二元函数的曲面)
 LC127 最短单词接龙 (先用一个字典记录xxx*xxx这种pattern对应的单词有哪些(相当于是把每个state的succ的映射都给建好了)，然后BFS(保证最优性),记得维护visited list，在把节点放进queue的时候就可以标记visited了，这样可以剪枝)
 LC126 找到所有的最短单词接龙 (这题和LC127不一样,只能在一个word从queue中pop出来之后再标记为visited)
+LC139 word break (要维护一个visited，因为s[:i]可以由多个组合可能,但之后的backtrack进行一次就够了)
+LC140 word break II (要把所有可能都找到，就不能像LC139那样维护一个visited list)
 
 ### Fancy Skills
 LC231 判断一个数是不是2的次方 (2的次方只有1个bit是1, 直接return n & n-1, 但要处理n=0的情况)

@@ -17,6 +17,9 @@ You must write an algorithm that runs in O(log n) time.
 # @param nums List[int]
 # @return int
 
+'''
+无论哪种写法都是rp = mid, 所以只能mid = (lp+rp) // 2 不能+1
+'''
 
 ### General Solution (tolerant of duplicate numbers)
 ### TC: O(logn) and SC: O(1)
