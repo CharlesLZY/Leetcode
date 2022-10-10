@@ -1,0 +1,13 @@
+chmod [target][-/+/=][permission] filename
+
+[target]
+- u: user
+- g: group
+- o: other
+- a: all
+
+[permission]
+- r: read    100 4
+- w: write   010 2
+- x: execute 001 1
+
