@@ -164,12 +164,14 @@ LC224/227/772 中缀表达式计算器 (先去掉所有的空格, 维护numStack
 遇到负数开头,就先往numstack放一个0,再往operatorStack里面放一个-
 写一个calOnce(), 每次处理一个operator,把结果push回numStack, 栈里面最多只会有一个'+'或'-'和一个'*'或'/')
 LC71 简化路径 (维护一个stack, 遇到..就pop, 最后把stack剩下的组成一个合法路径)
+LC769 最多可以分成几个子段排序 (维护curMin和curMax, 如果curMin小于前一个partition的MAX就合并两个partition, 最后return len(stack))
 
 ### Greedy
 LC322 硬币找零(greedy, 下界是amount除以最大面值, 然后从理论上最少的找零数量去做限制深度的DFS)
 LC279 一个数最少可以拆成多少个平方数 (可以用greedy的方式限制深度, 从最小的深度开始dfs，因为深度最大n(n个1相加),这样可以减少平均时间复杂度)
 LC122 随便买卖多少次 (greedy，只要明天涨,今天就买了,ans += prices[i] - prices[i-1])
 LC630 最多可以在ddl前上几门课 (用maxheap代表目前选的课, 先按照ddl对课程排序, 能塞进课就先上, 塞不下了, 把目前上了的课耗时最长的给删掉)
+LC769 最多可以分成几个子段排序 (看看当前的数字是不是越过了它应该在的位置, 如果越过了就意味着不能分段了)
 
 ### DP (recursion with memoization, if DP[i] != None: return DP[i] 通常用在递归有大量重复的情况)
 JZ42/LC53 连续子数组的最大和 (DP[i] = max(DP[i-1]+array[i], array[i]) where DP[i] Maximum sum of sub-array ending at i)
