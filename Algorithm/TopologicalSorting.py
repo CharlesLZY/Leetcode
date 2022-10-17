@@ -61,7 +61,7 @@ class Graph:
     def addEdge(self, m, n): 
         self.graph[m].add(n)
     
-    def isCyclic(self):
+    def isAcyclic(self):
         nodes = list(self.graph.keys())
         visited = defaultdict(bool)
         lookup = defaultdict(bool) ### trick: temporarily look-up record to decide whether there is cycle in this round
