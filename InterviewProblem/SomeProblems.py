@@ -312,16 +312,47 @@ arr = [3,0,3,-1] # 2
 arr = [-1,0,1,2,2,3,3,1,0]  # 4
 print(depth(arr))
 
+### Complementary Pairs
+'''
+A pair of strings form a complementary pair if there is some permutation of their concatenation
+that is a palindrome e.g. "abac" and "cab". Give an array of n strings, find the number of
+complementary pairs that can be formed.
+'''
+from collections import Counter, defaultdict
+def solution(words):
+    bitmasks = []
+    for word in words:
+        bitmask = 0
+        for char in word:
+            bitmask ^= (1<<(ord(char) - ord('a')))
+        bitmasks.append(bitmask)
+    # print(list(map(bin, bitmasks)))
+    ans = 0
+    for i in range(len(bitmasks)):
+        for j in range(i+1, len(bitmasks)):
+            concat = bitmasks[i] ^ bitmasks[j]
+            if concat == 0:
+                ans += 1
+            elif Counter(bin(concat))['1'] == 1:
+                print(i,j)
+                ans += 1
+    return ans
+    
+def solution(words):
+    hash_table = defaultdict(int)
+    ans = 0
+    for word in words:
+        bitmask = 0
+        for char in word:
+            bitmask ^= (1 << (ord(char) - ord('a')))
+        ans += hash_table[bitmask]
+        num = 1
+        for i in range(26): ### 26 English letters
+            ans += hash_table[bitmask ^ num]
+            num <<= 1
+        hash_table[bitmask] += 1
+        
+    return ans 
 
-
-
-
-
-
-
-
-
-
-
-
-
+arr = ["abc", "abcd", "bc", "adc"] ### ans = 3 "abc"&"abcd"; "abc"&"bc"; "abcd"&"adc"
+print(solution(arr))
