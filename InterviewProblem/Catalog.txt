@@ -269,6 +269,7 @@ LC139 word break (要维护一个visited，因为s[:i]可以由多个组合可�
 LC140 word break II (要把所有可能都找到，就不能像LC139那样维护一个visited list)
 
 ### Fancy Skills
+LC1109 差分数组 （diff[0] = nums[0] diff[i] = nums[i] - nums[i-1]， nums[i:j] += x可以处理成diff[i] += x diff[j+1] -= x）
 LC231 判断一个数是不是2的次方 (2的次方只有1个bit是1, 直接return n & n-1, 但要处理n=0的情况)
 LC470 用rand7实现rand10(采样2次，return idx%10+1。 p = 40/ 49 and E(# loops) = 1 * p + 2 * (1-p) * p + 3 * (1-p)^2 * p + ...)
 LC8 atoi (检查overflow的时候，只用检查是不是超过INT_MAX // 10或者result == INT_MAX // 10 and digit > INT_MAX % 10, 因为INT_MIN范围比INT_MAX大1)

@@ -3,7 +3,7 @@ Leetcode 209. Minimum Size Subarray Sum
 
 Description:
 Given an array of positive integers nums and a positive integer target, 
-return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1, numsr] 
+return the minimal length of a contiguous subarray [nums_l, nums_l+1, ..., nums_r-1, nums_r] 
 of which the sum is greater than or equal to target. If there is no such subarray, return 0 instead.
 '''
 
