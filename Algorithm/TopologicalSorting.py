@@ -60,6 +60,7 @@ class Graph:
     
     def addEdge(self, m, n): 
         self.graph[m].add(n)
+        self.graph[n]
     
     def isAcyclic(self):
         nodes = list(self.graph.keys())
@@ -83,23 +84,34 @@ class Graph:
                 return False
         return True
 
+'''
+If G is a DAG and (u,v) is an edge then for any DFS, f(u) > f(v) where f(.) is the finish time of DFS
+Proof:
+Case 1: s(u) < s(v) 
+v is the descendant of u
+Case 2: If s(v) < s(u)
+If we discovered u in the course of DFS of v, then there must be a path from v to u, plus there is a edge (u,v), there must be a cycle
+'''
 ### Store the order of being popped from the graph
 def topologicalSort(graph):
     nodes = list(graph.keys())
+    print(nodes)
     visited = defaultdict(bool)
     res = []
 
-    def forward(node, depth):
+    def DFS(node, depth):
         visited[node] = True
         for succ in graph[node]:
             if not visited[succ]:
-                forward(succ, depth+1)
-        res.insert(0, (node, depth)) ### trick: insert to the tail of the result
+                DFS(succ, depth+1)
+        res.append((node, depth))
     
     for node in nodes:
         if not visited[node]:
-            forward(node, 0)
-    res.sort(key=lambda x:x[1])
+            DFS(node, 0)
+
+    res.sort(key=lambda x:x[1]) ### this line must exists, DFS solution can not handle the case that descendant starts DFS before its ancestor
+    
     return res
 
 ### Intuitive Version
@@ -132,14 +144,26 @@ def topologicalSort(graph):
 '''
 
 g = Graph()
-g.addEdge(6,7)
-g.addEdge(8,4)
-g.addEdge(1,4)
+# g.addEdge(6,7)
+# g.addEdge(8,4)
+# g.addEdge(1,4)
 # g.addEdge(4,1)
-g.addEdge(1,3)
-g.addEdge(4,5)
-g.addEdge(2,5)
-g.addEdge(3,4)
+# g.addEdge(1,3)
+# g.addEdge(4,5)
+# g.addEdge(2,5)
+# g.addEdge(3,4)
+
+
+# g.addEdge(5, 3);
+
+g.addEdge(0, 3);
+g.addEdge(0, 2);
+g.addEdge(3, 4);
+g.addEdge(1, 4);
+g.addEdge(2, 3);
+
+g.addEdge(5, 3); ### unless we can ensure that ancestor always start DFS before its descendants
+
 print(topologicalSort(g.graph))
 
 

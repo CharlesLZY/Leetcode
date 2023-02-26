@@ -1,8 +1,8 @@
 '''
-### Disjoint Set
+### Disjoint Set (Union-Find)
 Disjoint set is a data structure that stores a collection of disjoint (non-overlapping) sets.
 In practice, the implementation of disjoint set is a forest. 
-THe disjoint set supports two operations: find the root of a node recursively and union two disjoint trees
+The disjoint set supports two operations: find the root of a node recursively and union two disjoint trees
 Find operation: Each node has its parent and the disjoint set can find the root recursively.
 Union operation: Set parent[x] = find(y)
 '''

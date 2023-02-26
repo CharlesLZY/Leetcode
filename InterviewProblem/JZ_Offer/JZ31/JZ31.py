@@ -16,7 +16,7 @@ output: True
 # @return bool
 
 '''
-Simulate the push process and maintain the stack. When a number is pushed, check the popV wehther the number is popped immediately.
+Simulate the push process and maintain the stack. When a number is pushed, check the popV whether the number is popped immediately.
 If any pop happened, check whether other value in popV can be popped from the stack 
 '''
 
